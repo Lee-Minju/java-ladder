@@ -9,9 +9,9 @@ public class Players {
   private int numberOfPlayers;
 
   public Players(List<Player> players) {
-    validatePlayer();
     this.players = players;
     this.numberOfPlayers = players.size();
+    validatePlayer();
   }
 
   public void validatePlayer() {
@@ -22,5 +22,9 @@ public class Players {
 
   public int numberOfPlayers() {
     return this.numberOfPlayers;
+  }
+
+  public Player getPlayerByIndex(int index) {
+    return this.players.get(index);
   }
 }
