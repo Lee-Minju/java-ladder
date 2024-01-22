@@ -6,6 +6,8 @@ import java.util.List;
 
 public class OutputView {
 
+  private final int MAKE_BLANK_FIVE = 6;
+
   public void showUpperPhase(Players players, Ladder ladder) {
     System.out.println("실행결과\n");
     showPlayers(players);
@@ -15,7 +17,9 @@ public class OutputView {
   public void showPlayers(Players players) {
     String result = "";
     for (int i = 0; i < players.numberOfPlayers(); i++) {
-      result += players.getPlayerByIndex(i).getPlayerNameString() + " ";
+      String playersName = players.getPlayerByIndex(i).getPlayerNameString();
+      String blank = makingBlank(playersName.length());
+      result += playersName + blank;
     }
     System.out.println(result);
   }
@@ -34,5 +38,14 @@ public class OutputView {
       }
       System.out.println(result);
     }
+  }
+
+  public String makingBlank(int lengthOfName){
+    int count = MAKE_BLANK_FIVE - lengthOfName;
+    String blank = "";
+    for(int i=0; i < count; i++){
+      blank += " ";
+    }
+    return blank;
   }
 }
