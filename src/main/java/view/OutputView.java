@@ -1,9 +1,11 @@
 package view;
 
 import domain.Ladder;
+import domain.Player;
 import java.util.List;
 
 public class OutputView {
+
 
   public static void showLadder(Ladder ladder) {
     for (int i = 0; i < ladder.getDepthValue(); i++) {

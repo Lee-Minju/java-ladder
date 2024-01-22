@@ -6,15 +6,21 @@ public class Players {
   private final int MIN_PLAYERS_NUMBER = 2;
 
   private List<Player> players;
+  private int numberOfPlayers;
 
   public Players(List<Player> players) {
-    validatePlayer(players);
+    validatePlayer();
     this.players = players;
+    this.numberOfPlayers = players.size();
   }
 
-  public void validatePlayer(List<Player> players) {
-    if(players.size() < MIN_PLAYERS_NUMBER){
+  public void validatePlayer() {
+    if(this.numberOfPlayers < MIN_PLAYERS_NUMBER){
       throw new IllegalArgumentException("플레이어 수는 두명 이상이어야 합니다.");
     }
+  }
+
+  public int numberOfPlayers() {
+    return this.numberOfPlayers;
   }
 }

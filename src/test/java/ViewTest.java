@@ -14,7 +14,6 @@ public class ViewTest {
     Ladder testLadder = new Ladder(testDepth, numberOfPlayers);
 
     OutputView.showLadder(testLadder);
-
   }
 
 }

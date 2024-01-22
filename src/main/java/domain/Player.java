@@ -9,4 +9,12 @@ public class Player {
     this.position = position;
   }
 
+  private Name getPlayerName(){
+    return this.playerName;
+  }
+
+  public String getPlayerNameString() {
+    return this.getPlayerName().getNameValue();
+  }
+
 }

@@ -44,7 +44,7 @@ public class Ladder {
     return this.lines.get(index);
   }
 
-  public List<Boolean> getLineValue(int index){
+  public List<Boolean> getLineValue(int index) {
     return this.getLine(index).getPoints();
   }
 

@@ -19,4 +19,8 @@ public class Name {
       throw new IllegalArgumentException("이름은 공백으로 구성될 수 없습니다.");
     }
   }
+
+  public String getNameValue() {
+    return this.name;
+  }
 }
