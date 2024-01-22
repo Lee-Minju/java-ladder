@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Ladder;
 import domain.LadderDepth;
 import domain.Name;
 import domain.Player;
@@ -19,7 +20,7 @@ public class LadderController {
   public void doLadderGame() {
     List<Player> players = makingPlayers();
     LadderDepth ladderDepth = new LadderDepth(inputView.askLadderDepth(), players.size());
-    //사다리 생성
+    Ladder ladder = makingLadder(ladderDepth, players.size());
 
   }
 
@@ -31,6 +32,15 @@ public class LadderController {
       players.add(player);
     }
     return players;
+  }
+
+  public Ladder makingLadder(LadderDepth depth, int numberOfPlayers) {
+    try {
+      Ladder ladder = new Ladder(depth, numberOfPlayers);
+      return ladder;
+    } catch (IllegalArgumentException e) {
+      return makingLadder(depth, numberOfPlayers);
+    }
   }
 
 

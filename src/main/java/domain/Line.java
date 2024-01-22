@@ -38,4 +38,8 @@ public class Line {
     return this.points;
   }
 
+  public Boolean getPoint(int index) {
+    return this.points.get(index);
+  }
+
 }
