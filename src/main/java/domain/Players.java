@@ -1,4 +1,5 @@
 package domain;
+
 import java.util.List;
 
 public class Players {
@@ -15,8 +16,8 @@ public class Players {
   }
 
   public void validatePlayer() {
-    if(this.numberOfPlayers < MIN_PLAYERS_NUMBER){
-      throw new IllegalArgumentException("플레이어 수는 두명 이상이어야 합니다.");
+    if (this.numberOfPlayers < MIN_PLAYERS_NUMBER) {
+      throw new IllegalArgumentException("[ERROR] 플레이어 수는 두명 이상이어야 합니다.");
     }
   }
 

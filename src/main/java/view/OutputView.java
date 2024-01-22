@@ -1,7 +1,6 @@
 package view;
 
 import domain.Ladder;
-import domain.Player;
 import domain.Players;
 import java.util.List;
 
@@ -13,27 +12,27 @@ public class OutputView {
     showLadder(ladder);
   }
 
-  public void showPlayers(Players players){
+  public void showPlayers(Players players) {
     String result = "";
-    for(int i=0; i < players.numberOfPlayers(); i++){
+    for (int i = 0; i < players.numberOfPlayers(); i++) {
       result += players.getPlayerByIndex(i).getPlayerNameString() + " ";
     }
     System.out.println(result);
   }
+
   public void showLadder(Ladder ladder) {
     for (int i = 0; i < ladder.getDepthValue(); i++) {
       List<Boolean> lineValue = ladder.getLineValue(i);
       String result = "|";
-      for(int j=0; j < lineValue.size(); j++){
-        if(lineValue.get(j)){
+      for (int j = 0; j < lineValue.size(); j++) {
+        if (lineValue.get(j)) {
           result += "-----|";
         }
-        if(!lineValue.get(j)){
+        if (!lineValue.get(j)) {
           result += "     |";
         }
       }
       System.out.println(result);
     }
   }
-
 }

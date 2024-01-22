@@ -11,12 +11,12 @@ public class Name {
     this.name = name;
   }
 
-  public void validateName(String name){
-    if(name.length() > MAX_NAME_LENGTH){
-      throw new IllegalArgumentException("이름은 5자를 넘을수 없습니다.");
+  public void validateName(String name) {
+    if (name.length() > MAX_NAME_LENGTH) {
+      throw new IllegalArgumentException("[ERROR] 이름은 5자를 넘을수 없습니다.");
     }
-    if(name.isBlank()){
-      throw new IllegalArgumentException("이름은 공백으로 구성될 수 없습니다.");
+    if (name.isBlank()) {
+      throw new IllegalArgumentException("[ERROR] 이름은 공백으로 구성될 수 없습니다.");
     }
   }
 

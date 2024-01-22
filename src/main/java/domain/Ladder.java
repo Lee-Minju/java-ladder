@@ -35,7 +35,7 @@ public class Ladder {
         }
       }
       if (!check) {
-        throw new IllegalArgumentException("사다리가 끊어져 있습니다.");
+        throw new IllegalArgumentException("[ERROR] 사다리가 끊어져 있습니다.");
       }
     }
   }

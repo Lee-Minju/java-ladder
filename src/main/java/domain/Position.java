@@ -12,7 +12,7 @@ public class Position {
 
   public void moveLeft() {
     if (this.position == MOST_LEFT_POSITION) {
-      throw new IllegalArgumentException("위치값은 음수가 될 수 없습니다.");
+      throw new IllegalArgumentException("[ERROR] 위치값은 음수가 될 수 없습니다.");
     }
     this.position--;
   }

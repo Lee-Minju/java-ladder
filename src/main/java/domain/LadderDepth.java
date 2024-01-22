@@ -10,8 +10,8 @@ public class LadderDepth {
   }
 
   private void validateDepth(int depth, int numberOfPlayers) {
-    if (depth < numberOfPlayers - 1){
-      throw new IllegalArgumentException("사다리의 높이는 (플레이어 수 - 1) 값 이상이어야 합니다.");
+    if (depth < numberOfPlayers - 1) {
+      throw new IllegalArgumentException("[ERROR] 사다리의 높이는 (플레이어 수 - 1) 값 이상이어야 합니다.");
     }
   }
 

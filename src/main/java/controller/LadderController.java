@@ -25,7 +25,6 @@ public class LadderController {
     Players players = makingPlayers();
     LadderDepth ladderDepth = makingLadderDepth(players.numberOfPlayers());
     Ladder ladder = new Ladder(ladderDepth, players.numberOfPlayers());
-    // 사다리랑 플레이어 출력
     this.outputView.showUpperPhase(players, ladder);
 
   }
@@ -47,22 +46,11 @@ public class LadderController {
 
   public LadderDepth makingLadderDepth(int numberOfPlayers) {
     try {
-      LadderDepth ladderDepth = new LadderDepth(inputView.askLadderDepth(),numberOfPlayers);
+      LadderDepth ladderDepth = new LadderDepth(inputView.askLadderDepth(), numberOfPlayers);
       return ladderDepth;
-    }catch (IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
       return makingLadderDepth(numberOfPlayers);
     }
   }
-
- /* public static Ladder makingLadder(LadderDepth depth, int numberOfPlayers) {
-    try {
-      Ladder ladder = new Ladder(depth, numberOfPlayers);
-      return ladder;
-    } catch (IllegalArgumentException e) {
-      return makingLadder(depth, numberOfPlayers);
-    }
-  }*/
-
-
 }
