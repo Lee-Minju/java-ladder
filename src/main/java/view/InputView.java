@@ -1,11 +1,8 @@
 package view;
 
-import domain.Player;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 import java.util.List;
-import domain.Name;
+import java.util.Scanner;
 
 public class InputView {
 

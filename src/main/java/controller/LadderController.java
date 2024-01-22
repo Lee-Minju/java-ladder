@@ -1,12 +1,12 @@
 package controller;
 
+import domain.LadderDepth;
+import domain.Name;
+import domain.Player;
 import domain.Position;
 import java.util.ArrayList;
 import java.util.List;
-import domain.Players;
-import domain.Player;
 import view.InputView;
-import domain.Name;
 
 public class LadderController {
 
@@ -17,20 +17,21 @@ public class LadderController {
   }
 
   public void doLadderGame() {
-
+    List<Player> players = makingPlayers();
+    LadderDepth ladderDepth = new LadderDepth(inputView.askLadderDepth(), players.size());
+    //사다리 생성
 
   }
 
   public List<Player> makingPlayers() {
     List<String> namesInString = inputView.askName();
     List<Player> players = new ArrayList<>();
-    for(int i = 0; i<namesInString.size(); i++){
+    for (int i = 0; i < namesInString.size(); i++) {
       Player player = new Player(new Name(namesInString.get(i)), new Position(i));
       players.add(player);
     }
     return players;
   }
-
 
 
 }
