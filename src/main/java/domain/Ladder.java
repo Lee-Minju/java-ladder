@@ -6,12 +6,23 @@ import java.util.List;
 public class Ladder {
 
   private List<Line> lines = new ArrayList<>();
+  private LadderDepth depth;
 
   public Ladder(LadderDepth depth, int numberOfPlayers) {
-    for (int i = 0; i < depth.getDepth(); i++) {
-      lines.add(new Line(numberOfPlayers));
+    this.depth = depth;
+    makingLadder(depth, numberOfPlayers);
+  }
+
+  public void makingLadder(LadderDepth depth, int numberOfPlayers) {
+    try {
+      for (int i = 0; i < depth.getDepth(); i++) {
+        this.lines.add(new Line(numberOfPlayers));
+      }
+      validateLadder(depth, numberOfPlayers);
+    } catch (IllegalArgumentException e) {
+      this.lines.clear();
+      makingLadder(depth, numberOfPlayers);
     }
-    validateLadder(depth, numberOfPlayers);
   }
 
   public void validateLadder(LadderDepth depth, int numberOfPlayers) {
@@ -31,5 +42,13 @@ public class Ladder {
 
   public Line getLine(int index) {
     return this.lines.get(index);
+  }
+
+  public List<Boolean> getLineValue(int index){
+    return this.getLine(index).getPoints();
+  }
+
+  public int getDepthValue() {
+    return this.depth.getDepth();
   }
 }

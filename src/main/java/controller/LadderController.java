@@ -20,7 +20,6 @@ public class LadderController {
   public void doLadderGame() {
     List<Player> players = makingPlayers();
     LadderDepth ladderDepth = new LadderDepth(inputView.askLadderDepth(), players.size());
-    Ladder ladder = makingLadder(ladderDepth, players.size());
 
   }
 
@@ -34,14 +33,14 @@ public class LadderController {
     return players;
   }
 
-  public Ladder makingLadder(LadderDepth depth, int numberOfPlayers) {
+ /* public static Ladder makingLadder(LadderDepth depth, int numberOfPlayers) {
     try {
       Ladder ladder = new Ladder(depth, numberOfPlayers);
       return ladder;
     } catch (IllegalArgumentException e) {
       return makingLadder(depth, numberOfPlayers);
     }
-  }
+  }*/
 
 
 }
