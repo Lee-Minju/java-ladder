@@ -15,7 +15,7 @@ public class Players {
     validatePlayer();
   }
 
-  public void validatePlayer() {
+  private void validatePlayer() {
     if (this.numberOfPlayers < MIN_PLAYERS_NUMBER) {
       throw new IllegalArgumentException("[ERROR] 플레이어 수는 두명 이상이어야 합니다.");
     }

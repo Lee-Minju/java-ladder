@@ -25,11 +25,11 @@ public class Ladder {
     }
   }
 
-  public void validateLadder(LadderDepth depth, int numberOfPlayers) {
+  private void validateLadder(LadderDepth depth, int numberOfPlayers) {
     for (int i = 0; i < numberOfPlayers - 1; i++) {
       Boolean check = false;
       for (int j = 0; j < depth.getDepth(); j++) {
-        if (this.getLine(j).getPoint(i).equals(true)) {
+        if (hasHorizon(i, j)) {
           check = true;
           break;
         }
@@ -38,6 +38,10 @@ public class Ladder {
         throw new IllegalArgumentException("[ERROR] 사다리가 끊어져 있습니다.");
       }
     }
+  }
+
+  private Boolean hasHorizon(int lineIndex, int linesIndex) {
+    return (this.getLine(linesIndex).getPoint(lineIndex));
   }
 
   public Line getLine(int index) {

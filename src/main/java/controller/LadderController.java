@@ -25,11 +25,10 @@ public class LadderController {
     Players players = makingPlayers();
     LadderDepth ladderDepth = makingLadderDepth(players.numberOfPlayers());
     Ladder ladder = new Ladder(ladderDepth, players.numberOfPlayers());
-    this.outputView.showUpperPhase(players, ladder);
-
+    outputView.showUpperPhase(players, ladder);
   }
 
-  public Players makingPlayers() {
+  private Players makingPlayers() {
     try {
       List<String> namesInString = inputView.askName();
       List<Player> players = new ArrayList<>();
@@ -44,12 +43,12 @@ public class LadderController {
     }
   }
 
-  public LadderDepth makingLadderDepth(int numberOfPlayers) {
+  private LadderDepth makingLadderDepth(int numberOfPlayers) {
     try {
       LadderDepth ladderDepth = new LadderDepth(inputView.askLadderDepth(), numberOfPlayers);
       return ladderDepth;
     } catch (IllegalArgumentException e) {
-      System.out.println(e.getMessage());
+      System.out.printf(e.getMessage(), numberOfPlayers - 1);
       return makingLadderDepth(numberOfPlayers);
     }
   }

@@ -14,13 +14,17 @@ public class Line {
   public Line(int numberOfPlayer) {
     this.points.add(makePoint());
     for (int i = 1; i < numberOfPlayer - 1; i++) {
-      if (this.points.get(i - 1).equals(true)) {
+      if (hasPreviousLineHorizon(i)) {
         this.points.add(i, false);
       }
-      if (this.points.get(i - 1).equals(false)) {
+      if (!hasPreviousLineHorizon(i)) {
         this.points.add(i, makePoint());
       }
     }
+  }
+
+  private Boolean hasPreviousLineHorizon(int index) {
+    return this.getPoint(index - 1);
   }
 
   public int length() {

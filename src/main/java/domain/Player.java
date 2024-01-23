@@ -13,5 +13,4 @@ public class Player {
   public String getPlayerNameString() {
     return this.playerName.getNameValue();
   }
-
 }
