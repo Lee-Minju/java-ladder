@@ -23,7 +23,11 @@ public class Line {
     }
   }
 
-  private Boolean hasPreviousLineHorizon(int index) {
+  public Boolean hasLineHorizon(int index) {
+    return this.getPoint(index);
+  }
+
+  public Boolean hasPreviousLineHorizon(int index) {
     return this.getPoint(index - 1);
   }
 

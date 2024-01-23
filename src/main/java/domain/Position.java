@@ -21,7 +21,7 @@ public class Position {
     this.position++;
   }
 
-  public int getPosition() {
+  public int getValue() {
     return this.position;
   }
 }

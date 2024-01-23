@@ -10,6 +10,14 @@ public class Player {
     this.position = position;
   }
 
+  public int getPositionValue() {
+    return this.position.getValue();
+  }
+
+  public Position getPosition() {
+    return this.position;
+  }
+
   public String getPlayerNameString() {
     return this.playerName.getNameValue();
   }

@@ -10,7 +10,7 @@ public class PositionTest {
 
     Position test = new Position(position);
     test.moveLeft();
-    Assertions.assertEquals(test.getPosition(), 0);
+    Assertions.assertEquals(test.getValue(), 0);
   }
 
   @Test
@@ -19,6 +19,6 @@ public class PositionTest {
 
     Position test = new Position(position);
     test.moveRight();
-    Assertions.assertEquals(test.getPosition(), 1);
+    Assertions.assertEquals(test.getValue(), 1);
   }
 }

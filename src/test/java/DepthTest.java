@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class DepthTest {
+
   @Test
   void 깊이를_받아서_저장() {
     int depth = 5;

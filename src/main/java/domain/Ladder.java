@@ -27,17 +27,19 @@ public class Ladder {
 
   private void validateLadder(LadderDepth depth, int numberOfPlayers) {
     for (int i = 0; i < numberOfPlayers - 1; i++) {
-      Boolean check = false;
-      for (int j = 0; j < depth.getDepth(); j++) {
-        if (hasHorizon(i, j)) {
-          check = true;
-          break;
-        }
-      }
-      if (!check) {
+      if (!isLadderSafe(i, depth.getDepth())) {
         throw new IllegalArgumentException("[ERROR] 사다리가 끊어져 있습니다.");
       }
     }
+  }
+
+  private Boolean isLadderSafe(int lineIndex, int depth) {
+    for (int i = 0; i < depth; i++) {
+      if (hasHorizon(lineIndex, i)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   private Boolean hasHorizon(int lineIndex, int linesIndex) {

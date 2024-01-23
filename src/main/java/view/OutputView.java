@@ -27,23 +27,28 @@ public class OutputView {
   public void showLadder(Ladder ladder) {
     for (int i = 0; i < ladder.getDepthValue(); i++) {
       List<Boolean> lineValue = ladder.getLineValue(i);
-      String result = "|";
-      for (int j = 0; j < lineValue.size(); j++) {
-        if (lineValue.get(j)) {
-          result += "-----|";
-        }
-        if (!lineValue.get(j)) {
-          result += "     |";
-        }
-      }
+      String ladderParts = "|";
+      String result = drawLadder(lineValue, ladderParts);
       System.out.println(result);
     }
   }
 
-  public String makingBlank(int lengthOfName){
+  private String drawLadder(List<Boolean> lineValue, String ladderParts) {
+    for (int j = 0; j < lineValue.size(); j++) {
+      if (lineValue.get(j)) {
+        ladderParts += "-----|";
+      }
+      if (!lineValue.get(j)) {
+        ladderParts += "     |";
+      }
+    }
+    return ladderParts;
+  }
+
+  public String makingBlank(int lengthOfName) {
     int count = MAKE_BLANK_FIVE - lengthOfName;
     String blank = "";
-    for(int i=0; i < count; i++){
+    for (int i = 0; i < count; i++) {
       blank += " ";
     }
     return blank;

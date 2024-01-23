@@ -19,8 +19,7 @@ public class LineTest {
 
     Assertions.assertDoesNotThrow(() -> {
       for (int i = 0; i < numberOfPlayers - 2; i++) {
-        if (testLine.getPoint(i).equals(true) && testLine.getPoint(i + 1)
-            .equals(true)) {
+        if (testLine.getPoint(i).equals(true) && testLine.getPoint(i + 1).equals(true)) {
           throw new IllegalArgumentException("가로줄 중복");
         }
       }

@@ -13,8 +13,8 @@ import view.OutputView;
 
 public class LadderController {
 
-  InputView inputView = new InputView();
-  OutputView outputView = new OutputView();
+  InputView inputView;
+  OutputView outputView;
 
   public LadderController(InputView inputView, OutputView outputView) {
     this.inputView = inputView;
@@ -31,16 +31,21 @@ public class LadderController {
   private Players makingPlayers() {
     try {
       List<String> namesInString = inputView.askName();
-      List<Player> players = new ArrayList<>();
-      for (int i = 0; i < namesInString.size(); i++) {
-        Player player = new Player(new Name(namesInString.get(i)), new Position(i));
-        players.add(player);
-      }
-      return new Players(players);
+      List<Player> playerLineUp = makingPlayerLineUp(namesInString);
+      return new Players(playerLineUp);
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
       return makingPlayers();
     }
+  }
+
+  private List<Player> makingPlayerLineUp(List<String> namesInString) {
+    List<Player> playerLineUp = new ArrayList<>();
+    for (int i = 0; i < namesInString.size(); i++) {
+      Player player = new Player(new Name(namesInString.get(i)), new Position(i));
+      playerLineUp.add(player);
+    }
+    return playerLineUp;
   }
 
   private LadderDepth makingLadderDepth(int numberOfPlayers) {
