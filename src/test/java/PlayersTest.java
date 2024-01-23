@@ -26,4 +26,14 @@ public class PlayersTest {
       Players testPlayers = new Players(List.of(testPlayer1));
     });
   }
+
+  @Test
+  void 플레이어_이름이_중복되서는_안된다() {
+    Player testPlayer1 = new Player(new Name("minju"), new Position(0));
+    Player testPlayer2 = new Player(new Name("minju"), new Position(1));
+
+    Assertions.assertThrows(IllegalArgumentException.class, () -> {
+      Players testPlayers = new Players(List.of(testPlayer1, testPlayer2));
+    });
+  }
 }
