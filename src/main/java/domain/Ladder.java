@@ -13,37 +13,43 @@ public class Ladder {
     makeLadder(depth, numberOfPlayers);
   }
 
-  public void makeLadder(LadderDepth depth, int numberOfPlayers) {
+  private void makeLadder(LadderDepth depth, int numberOfPlayers) {
     try {
-      for (int i = 0; i < depth.getDepth(); i++) {
-        this.lines.add(new Line(numberOfPlayers));
-      }
-      validateLadder(depth, numberOfPlayers);
+      List<Line> candidateLines = makeLines(depth, numberOfPlayers);
+      validateLadder(candidateLines, numberOfPlayers);
+      this.lines.addAll(candidateLines);
     } catch (IllegalArgumentException e) {
-      this.lines.clear();
       makeLadder(depth, numberOfPlayers);
     }
   }
 
-  private void validateLadder(LadderDepth depth, int numberOfPlayers) {
+  public List<Line> makeLines(LadderDepth depth, int numberOfPlayers) {
+    List<Line> lines = new ArrayList<>();
+    for (int i = 0; i < depth.getDepth(); i++) {
+      lines.add(new Line(numberOfPlayers));
+    }
+    return lines;
+  }
+
+  private void validateLadder(List<Line> candidateLines, int numberOfPlayers) {
     for (int i = 0; i < numberOfPlayers - 1; i++) {
-      if (!isLadderSafe(i, depth.getDepth())) {
+      if (!isLadderSafe(candidateLines, i)) {
         throw new IllegalArgumentException("[ERROR] 사다리가 끊어져 있습니다.");
       }
     }
   }
 
-  private Boolean isLadderSafe(int lineIndex, int depth) {
-    for (int i = 0; i < depth; i++) {
-      if (hasHorizon(lineIndex, i)) {
+  private Boolean isLadderSafe(List<Line> candidateLines, int lineIndex) {
+    for (int i = 0; i < candidateLines.size(); i++) {
+      if (hasHorizon(candidateLines, lineIndex, i)) {
         return true;
       }
     }
     return false;
   }
 
-  private Boolean hasHorizon(int lineIndex, int linesIndex) {
-    return (this.getLine(linesIndex).getPoint(lineIndex));
+  private Boolean hasHorizon(List<Line> candidateLines, int lineIndex, int linesIndex) {
+    return (candidateLines.get(linesIndex).getPoint(lineIndex));
   }
 
   public Line getLine(int index) {
