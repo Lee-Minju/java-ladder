@@ -7,7 +7,7 @@ import java.util.List;
 
 public class OutputView {
 
-  private final int MAKE_BLANK_FIVE = 6;
+  private final int BLANK_BASE = 6;
 
   public void showUpperPhase(Players players, Ladder ladder) {
     System.out.println("실행결과\n");
@@ -47,7 +47,7 @@ public class OutputView {
   }
 
   public String makeBlank(int lengthOfName) {
-    int count = MAKE_BLANK_FIVE - lengthOfName;
+    int count = BLANK_BASE - lengthOfName;
     String blank = "";
     for (int i = 0; i < count; i++) {
       blank += " ";

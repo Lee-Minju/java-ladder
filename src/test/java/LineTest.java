@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 public class LineTest {
 
   @Test
-  void 플레이어_수에_맞는_라인_생성() {
+  void 플레이어_수에_맞는_라인을_생성한다() {
     int numberOfPlayers = 4;
     Line testLine = new Line(numberOfPlayers);
 

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 public class NameTest {
   @Test
-  void 이름을_생성(){
+  void 이름을_생성한다(){
     String name = "pobi";
 
     Assertions.assertDoesNotThrow(() -> {
@@ -13,7 +13,7 @@ public class NameTest {
   }
 
   @Test
-  void 이름이_5자를_넘으면_예외발생() {
+  void 이름이_5자를_넘으면_예외가_발생한다() {
     String name = "leeminju";
 
     Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -22,7 +22,7 @@ public class NameTest {
   }
 
   @Test
-  void 이름이_공백으로만_구성되면_예외발생() {
+  void 이름이_공백으로만_구성되면_예외가_발생한다() {
     String name = " ";
 
     Assertions.assertThrows(IllegalArgumentException.class, () -> {

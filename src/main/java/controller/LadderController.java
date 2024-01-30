@@ -22,24 +22,24 @@ public class LadderController {
   }
 
   public void doLadderGame() {
-    Players players = makingPlayers();
-    LadderDepth ladderDepth = makingLadderDepth(players.getNumberOfPlayers());
+    Players players = makePlayers();
+    LadderDepth ladderDepth = makeLadderDepth(players.getNumberOfPlayers());
     Ladder ladder = new Ladder(ladderDepth, players.getNumberOfPlayers());
     outputView.showUpperPhase(players, ladder);
   }
 
-  private Players makingPlayers() {
+  private Players makePlayers() {
     try {
       List<String> namesInString = inputView.askName();
-      List<Player> playerLineUp = makingPlayerLineUp(namesInString);
+      List<Player> playerLineUp = makePlayerLineUp(namesInString);
       return new Players(playerLineUp);
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
-      return makingPlayers();
+      return makePlayers();
     }
   }
 
-  private List<Player> makingPlayerLineUp(List<String> namesInString) {
+  private List<Player> makePlayerLineUp(List<String> namesInString) {
     List<Player> playerLineUp = new ArrayList<>();
     for (int i = 0; i < namesInString.size(); i++) {
       Player player = new Player(new Name(namesInString.get(i)), new Position(i));
@@ -48,13 +48,13 @@ public class LadderController {
     return playerLineUp;
   }
 
-  private LadderDepth makingLadderDepth(int numberOfPlayers) {
+  private LadderDepth makeLadderDepth(int numberOfPlayers) {
     try {
       LadderDepth ladderDepth = new LadderDepth(inputView.askLadderDepth(), numberOfPlayers);
       return ladderDepth;
     } catch (IllegalArgumentException e) {
       System.out.printf(e.getMessage(), numberOfPlayers - 1);
-      return makingLadderDepth(numberOfPlayers);
+      return makeLadderDepth(numberOfPlayers);
     }
   }
 }

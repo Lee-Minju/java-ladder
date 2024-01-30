@@ -2,11 +2,11 @@ package domain;
 
 public class LadderDepth {
 
-  private final int depth;
+  private final int value;
 
   public LadderDepth(int depth, int numberOfPlayers) {
     validateDepth(depth, numberOfPlayers);
-    this.depth = depth;
+    this.value = depth;
   }
 
   private void validateDepth(int depth, int numberOfPlayers) {
@@ -16,7 +16,7 @@ public class LadderDepth {
     }
   }
 
-  public int getDepth() {
-    return this.depth;
+  public int getValue() {
+    return this.value;
   }
 }
