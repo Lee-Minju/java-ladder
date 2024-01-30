@@ -16,25 +16,21 @@ public class Player {
     return this.position.getValue();
   }
 
-  public Position getPosition() {
-    return this.position;
-  }
-
-  public String getPlayerNameString() {
+  public String getPlayerNameValue() {
     return this.playerName.getNameValue();
   }
 
   @Override
   public boolean equals(Object obj) {
-    if(!(obj instanceof Player)){
+    if (!(obj instanceof Player)) {
       return false;
     }
     Player p = (Player) obj;
-    return (this.getPlayerNameString().equals(p.getPlayerNameString()));
+    return (this.getPlayerNameValue().equals(p.getPlayerNameValue()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(this.getPlayerNameString());
+    return Objects.hash(this.getPlayerNameValue());
   }
 }
