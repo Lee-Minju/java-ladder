@@ -4,24 +4,24 @@ public class Position {
 
   private final int MOST_LEFT_POSITION = 0;
 
-  private int position;
+  private int value;
 
-  public Position(int position) {
-    this.position = position;
+  public Position(int value) {
+    this.value = value;
   }
 
   public void moveLeft() {
-    if (this.position == MOST_LEFT_POSITION) {
+    if (this.value == MOST_LEFT_POSITION) {
       throw new IllegalArgumentException("[ERROR] 위치값은 음수가 될 수 없습니다.");
     }
-    this.position--;
+    this.value--;
   }
 
   public void moveRight() {
-    this.position++;
+    this.value++;
   }
 
   public int getValue() {
-    return this.position;
+    return this.value;
   }
 }

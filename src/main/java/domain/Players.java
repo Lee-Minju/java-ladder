@@ -9,16 +9,14 @@ public class Players {
   private final int MIN_PLAYERS_NUMBER = 2;
 
   private List<Player> players;
-  private int numberOfPlayers;
 
   public Players(List<Player> players) {
     this.players = players;
-    this.numberOfPlayers = players.size();
     validatePlayers();
   }
 
   private void validatePlayers() {
-    if (this.numberOfPlayers < MIN_PLAYERS_NUMBER) {
+    if (this.players.size() < MIN_PLAYERS_NUMBER) {
       throw new IllegalArgumentException("[ERROR] 플레이어 수는 두명 이상이어야 합니다.");
     }
     hasDuplicatedName();
@@ -26,7 +24,7 @@ public class Players {
 
   private void hasDuplicatedName() {
     Set<Player> playersInSet = new HashSet<>();
-    for(int i=0; i<this.numberOfPlayers; i++){
+    for(int i=0; i<this.players.size(); i++){
       playersInSet.add(this.getPlayerByIndex(i));
       if(playersInSet.size() != i+1){
         throw new IllegalArgumentException("[ERROR] 중복된 이름을 입력할 수 없습니다.");
@@ -34,8 +32,8 @@ public class Players {
     }
   }
 
-  public int numberOfPlayers() {
-    return this.numberOfPlayers;
+  public int getNumberOfPlayers() {
+    return this.players.size();
   }
 
   public Player getPlayerByIndex(int index) {

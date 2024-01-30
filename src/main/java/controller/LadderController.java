@@ -23,8 +23,8 @@ public class LadderController {
 
   public void doLadderGame() {
     Players players = makingPlayers();
-    LadderDepth ladderDepth = makingLadderDepth(players.numberOfPlayers());
-    Ladder ladder = new Ladder(ladderDepth, players.numberOfPlayers());
+    LadderDepth ladderDepth = makingLadderDepth(players.getNumberOfPlayers());
+    Ladder ladder = new Ladder(ladderDepth, players.getNumberOfPlayers());
     outputView.showUpperPhase(players, ladder);
   }
 

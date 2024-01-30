@@ -16,7 +16,7 @@ public class OutputView {
 
   public void showPlayers(Players players) {
     String result = "";
-    for (int i = 0; i < players.numberOfPlayers(); i++) {
+    for (int i = 0; i < players.getNumberOfPlayers(); i++) {
       String playersName = players.getPlayerByIndex(i).getPlayerNameString();
       String blank = makingBlank(playersName.length());
       result += playersName + blank;
