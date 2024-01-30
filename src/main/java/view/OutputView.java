@@ -1,6 +1,7 @@
 package view;
 
 import domain.Ladder;
+import domain.Line;
 import domain.Players;
 import java.util.List;
 
@@ -17,8 +18,8 @@ public class OutputView {
   public void showPlayers(Players players) {
     String result = "";
     for (int i = 0; i < players.getNumberOfPlayers(); i++) {
-      String playersName = players.getPlayerByIndex(i).getPlayerNameString();
-      String blank = makingBlank(playersName.length());
+      String playersName = players.getPlayerByIndex(i).getPlayerNameValue();
+      String blank = makeBlank(playersName.length());
       result += playersName + blank;
     }
     System.out.println(result);
@@ -26,26 +27,26 @@ public class OutputView {
 
   public void showLadder(Ladder ladder) {
     for (int i = 0; i < ladder.getDepthValue(); i++) {
-      List<Boolean> lineValue = ladder.getLineValue(i);
+      Line line = ladder.getLine(i);
       String ladderParts = "|";
-      String result = drawLadder(lineValue, ladderParts);
+      String result = drawLadder(line, ladderParts);
       System.out.println(result);
     }
   }
 
-  private String drawLadder(List<Boolean> lineValue, String ladderParts) {
-    for (int j = 0; j < lineValue.size(); j++) {
-      if (lineValue.get(j)) {
+  private String drawLadder(Line line, String ladderParts) {
+    for (int j = 0; j < line.getLength(); j++) {
+      if (line.getPoint(j)) {
         ladderParts += "-----|";
       }
-      if (!lineValue.get(j)) {
+      if (!line.getPoint(j)) {
         ladderParts += "     |";
       }
     }
     return ladderParts;
   }
 
-  public String makingBlank(int lengthOfName) {
+  public String makeBlank(int lengthOfName) {
     int count = MAKE_BLANK_FIVE - lengthOfName;
     String blank = "";
     for (int i = 0; i < count; i++) {

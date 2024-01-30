@@ -10,10 +10,10 @@ public class Ladder {
 
   public Ladder(LadderDepth depth, int numberOfPlayers) {
     this.depth = depth;
-    makingLadder(depth, numberOfPlayers);
+    makeLadder(depth, numberOfPlayers);
   }
 
-  public void makingLadder(LadderDepth depth, int numberOfPlayers) {
+  public void makeLadder(LadderDepth depth, int numberOfPlayers) {
     try {
       for (int i = 0; i < depth.getDepth(); i++) {
         this.lines.add(new Line(numberOfPlayers));
@@ -21,7 +21,7 @@ public class Ladder {
       validateLadder(depth, numberOfPlayers);
     } catch (IllegalArgumentException e) {
       this.lines.clear();
-      makingLadder(depth, numberOfPlayers);
+      makeLadder(depth, numberOfPlayers);
     }
   }
 
@@ -48,10 +48,6 @@ public class Ladder {
 
   public Line getLine(int index) {
     return this.lines.get(index);
-  }
-
-  public List<Boolean> getLineValue(int index) {
-    return this.getLine(index).getPoints();
   }
 
   public int getDepthValue() {

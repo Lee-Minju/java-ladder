@@ -9,7 +9,7 @@ public class LineTest {
     int numberOfPlayers = 4;
     Line testLine = new Line(numberOfPlayers);
 
-    Assertions.assertEquals(testLine.length(), numberOfPlayers - 1);
+    Assertions.assertEquals(testLine.getLength(), numberOfPlayers - 1);
   }
 
   @Test

@@ -31,10 +31,6 @@ public class Line {
     return this.getPoint(index - 1);
   }
 
-  public int length() {
-    return this.points.size();
-  }
-
   private boolean makePoint() {
     if (random.nextInt(10) < RANDOM_STAND_NUMBER) {
       return false;
@@ -42,8 +38,8 @@ public class Line {
     return true;
   }
 
-  public List<Boolean> getPoints() {
-    return this.points;
+  public int getLength() {
+    return this.points.size();
   }
 
   public Boolean getPoint(int index) {
