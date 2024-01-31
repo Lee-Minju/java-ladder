@@ -1,4 +1,6 @@
 import domain.Line;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -13,16 +15,13 @@ public class LineTest {
   }
 
   @Test
-  void 라인에_가로줄이_겹칠_수_없다() {
+  void 라인에_가로줄이_겹친다면_예외를_발생한다() {
     int numberOfPlayers = 4;
     Line testLine = new Line(numberOfPlayers);
+    List<Boolean> testPoints = Arrays.asList(true, true, false);
 
-    Assertions.assertDoesNotThrow(() -> {
-      for (int i = 0; i < numberOfPlayers - 2; i++) {
-        if (testLine.getPoint(i).equals(true) && testLine.getPoint(i + 1).equals(true)) {
-          throw new IllegalArgumentException("가로줄 중복");
-        }
-      }
+    Assertions.assertThrows(IllegalArgumentException.class, () -> {
+      testLine.validateLine(testPoints, numberOfPlayers);
     });
   }
 }
