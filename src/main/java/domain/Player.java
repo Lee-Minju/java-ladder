@@ -7,9 +7,9 @@ public class Player {
   private Name playerName;
   private Position position;
 
-  public Player(Name playerName, Position position) {
-    this.playerName = playerName;
-    this.position = position;
+  public Player(String name, int position) {
+    this.playerName = new Name(name);
+    this.position = new Position(position);
   }
 
   public int getPositionValue() {

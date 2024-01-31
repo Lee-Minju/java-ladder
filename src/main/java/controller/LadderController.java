@@ -42,7 +42,7 @@ public class LadderController {
   private List<Player> makePlayerLineUp(List<String> namesInString) {
     List<Player> playerLineUp = new ArrayList<>();
     for (int i = 0; i < namesInString.size(); i++) {
-      Player player = new Player(new Name(namesInString.get(i)), new Position(i));
+      Player player = new Player(namesInString.get(i), i);
       playerLineUp.add(player);
     }
     return playerLineUp;

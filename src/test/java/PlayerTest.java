@@ -8,11 +8,8 @@ public class PlayerTest {
 
   @Test
   void 이름과_포지션을_받아서_플레이어를_생성한다() {
-    Name playerName = new Name("pobi");
-    Position testPosition = new Position(1);
-
     Assertions.assertDoesNotThrow(() -> {
-      Player player = new Player(playerName, testPosition);
+      Player player = new Player("pobi", 1);
     });
   }
 }
