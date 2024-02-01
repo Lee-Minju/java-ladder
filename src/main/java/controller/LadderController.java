@@ -13,13 +13,8 @@ import view.OutputView;
 
 public class LadderController {
 
-  InputView inputView;
-  OutputView outputView;
-
-  public LadderController(InputView inputView, OutputView outputView) {
-    this.inputView = inputView;
-    this.outputView = outputView;
-  }
+  private final InputView inputView = new InputView();
+  private final OutputView outputView = new OutputView();
 
   public void doLadderGame() {
     Players players = makePlayers();

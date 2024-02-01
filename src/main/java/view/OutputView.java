@@ -3,7 +3,6 @@ package view;
 import domain.Ladder;
 import domain.Line;
 import domain.Players;
-import java.util.List;
 
 public class OutputView {
 
@@ -38,10 +37,9 @@ public class OutputView {
     for (int j = 0; j < line.getLength(); j++) {
       if (line.getPoint(j)) {
         ladderParts += "-----|";
+        continue;
       }
-      if (!line.getPoint(j)) {
-        ladderParts += "     |";
-      }
+      ladderParts += "     |";
     }
     return ladderParts;
   }
