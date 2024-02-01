@@ -2,6 +2,8 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import tools.NumberGenerator;
+import tools.RandomNumberGenerator;
 
 public class Ladder {
 
@@ -15,7 +17,8 @@ public class Ladder {
 
   private void makeLadder(LadderDepth depth, int numberOfPlayers) {
     try {
-      List<Line> candidateLines = makeLines(depth, numberOfPlayers);
+      NumberGenerator numberGenerator = new RandomNumberGenerator();
+      List<Line> candidateLines = makeLines(depth, numberOfPlayers, numberGenerator);
       validateLadder(candidateLines, numberOfPlayers);
       this.lines.addAll(candidateLines);
     } catch (IllegalArgumentException e) {
@@ -23,15 +26,15 @@ public class Ladder {
     }
   }
 
-  public List<Line> makeLines(LadderDepth depth, int numberOfPlayers) {
+  public List<Line> makeLines(LadderDepth depth, int numberOfPlayers, NumberGenerator numberGenerator) {
     List<Line> lines = new ArrayList<>();
     for (int i = 0; i < depth.getValue(); i++) {
-      lines.add(new Line(numberOfPlayers));
+      lines.add(new Line(numberOfPlayers, numberGenerator));
     }
     return lines;
   }
 
-  private void validateLadder(List<Line> candidateLines, int numberOfPlayers) {
+  public void validateLadder(List<Line> candidateLines, int numberOfPlayers) {
     for (int i = 0; i < numberOfPlayers - 1; i++) {
       if (!isLadderSafe(candidateLines, i)) {
         throw new IllegalArgumentException("[ERROR] 사다리가 끊어져 있습니다.");
