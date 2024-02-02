@@ -4,20 +4,16 @@ import java.util.Objects;
 
 public class Player {
 
-  private Name playerName;
+  private Name name;
   private Position position;
 
   public Player(String name, int position) {
-    this.playerName = new Name(name);
+    this.name = new Name(name);
     this.position = new Position(position);
   }
 
-  public int getPositionValue() {
-    return this.position.getValue();
-  }
-
   public String getPlayerNameValue() {
-    return this.playerName.getNameValue();
+    return this.name.getNameValue();
   }
 
   @Override
