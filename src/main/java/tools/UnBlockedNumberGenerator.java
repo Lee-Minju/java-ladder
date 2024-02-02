@@ -1,6 +1,6 @@
 package tools;
 
-public class UnBlockedNumberGenerator implements NumberGenerator{
+public class UnBlockedNumberGenerator implements NumberGenerator {
 
   private final int UNBLOCKED_NUMBER = 4;
 
@@ -8,5 +8,4 @@ public class UnBlockedNumberGenerator implements NumberGenerator{
   public int generateNumber() {
     return UNBLOCKED_NUMBER;
   }
-
 }

@@ -26,7 +26,8 @@ public class Ladder {
     }
   }
 
-  public List<Line> makeLines(LadderDepth depth, int numberOfPlayers, NumberGenerator numberGenerator) {
+  public List<Line> makeLines(LadderDepth depth, int numberOfPlayers,
+      NumberGenerator numberGenerator) {
     List<Line> lines = new ArrayList<>();
     for (int i = 0; i < depth.getValue(); i++) {
       lines.add(new Line(numberOfPlayers, numberGenerator));

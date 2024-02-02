@@ -1,7 +1,6 @@
-import domain.Name;
+
 import domain.Player;
 import domain.Players;
-import domain.Position;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -29,7 +28,7 @@ public class PlayersTest {
 
   @Test
   void 플레이어_이름이_중복되서는_안된다() {
-    Player testPlayer1 = new Player("minju",0);
+    Player testPlayer1 = new Player("minju", 0);
     Player testPlayer2 = new Player("minju", 1);
 
     Assertions.assertThrows(IllegalArgumentException.class, () -> {

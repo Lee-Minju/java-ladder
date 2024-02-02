@@ -3,8 +3,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class NameTest {
+
   @Test
-  void 이름을_생성한다(){
+  void 이름을_생성한다() {
     String name = "pobi";
 
     Assertions.assertDoesNotThrow(() -> {
@@ -29,5 +30,4 @@ public class NameTest {
       Name playerName = new Name(name);
     });
   }
-
 }

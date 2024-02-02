@@ -1,6 +1,4 @@
 import domain.Player;
-import domain.Name;
-import domain.Position;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

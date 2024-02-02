@@ -24,9 +24,9 @@ public class Players {
 
   private void hasDuplicatedName(List<Player> players) {
     Set<Player> duplicateChecker = new HashSet<>();
-    for(int i=0; i<players.size(); i++){
+    for (int i = 0; i < players.size(); i++) {
       duplicateChecker.add(players.get(i));
-      if(duplicateChecker.size() != i+1){
+      if (duplicateChecker.size() != i + 1) {
         throw new IllegalArgumentException("[ERROR] 중복된 이름을 입력할 수 없습니다.");
       }
     }
@@ -39,5 +39,4 @@ public class Players {
   public Player getPlayerByIndex(int index) {
     return this.players.get(index);
   }
-
 }
