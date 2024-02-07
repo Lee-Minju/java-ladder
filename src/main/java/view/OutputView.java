@@ -27,13 +27,13 @@ public class OutputView {
   public void showLadder(Ladder ladder) {
     for (int i = 0; i < ladder.getDepthValue(); i++) {
       Line line = ladder.getLine(i);
-      String ladderParts = "|";
-      String result = drawLadder(line, ladderParts);
+      String result = drawLadder(line);
       System.out.println(result);
     }
   }
 
-  private String drawLadder(Line line, String ladderParts) {
+  private String drawLadder(Line line) {
+    String ladderParts = "|";
     for (int j = 0; j < line.getLength(); j++) {
       if (line.getPoint(j)) {
         ladderParts += "-----|";
