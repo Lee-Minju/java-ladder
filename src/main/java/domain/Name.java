@@ -20,7 +20,7 @@ public class Name {
     }
   }
 
-  public String getNameValue() {
+  public String getValue() {
     return this.value;
   }
 }

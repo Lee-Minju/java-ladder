@@ -12,8 +12,8 @@ public class Player {
     this.position = new Position(position);
   }
 
-  public String getPlayerNameValue() {
-    return this.name.getNameValue();
+  public String getName() {
+    return this.name.getValue();
   }
 
   @Override
@@ -22,11 +22,11 @@ public class Player {
       return false;
     }
     Player p = (Player) obj;
-    return (this.getPlayerNameValue().equals(p.getPlayerNameValue()));
+    return (this.getName().equals(p.getName()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(this.getPlayerNameValue());
+    return Objects.hash(this.getName());
   }
 }
