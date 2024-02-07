@@ -8,6 +8,8 @@ import domain.Players;
 import domain.Position;
 import java.util.ArrayList;
 import java.util.List;
+import tools.NumberGenerator;
+import tools.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -17,9 +19,10 @@ public class LadderController {
   private final OutputView outputView = new OutputView();
 
   public void doLadderGame() {
+    NumberGenerator ladderSetting = new RandomNumberGenerator();
     Players players = makePlayers();
     LadderDepth ladderDepth = makeLadderDepth(players.getNumberOfPlayers());
-    Ladder ladder = new Ladder(ladderDepth, players.getNumberOfPlayers());
+    Ladder ladder = new Ladder(ladderDepth, players.getNumberOfPlayers(), ladderSetting);
     outputView.showUpperPhase(players, ladder);
   }
 
