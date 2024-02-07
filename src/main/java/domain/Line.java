@@ -7,7 +7,7 @@ import tools.RandomNumberGenerator;
 
 public class Line {
 
-  private final int RANDOM_STAND_NUMBER = 5;
+  private static final int RANDOM_STAND_NUMBER = 5;
 
   private List<Boolean> points = new ArrayList<>();
 

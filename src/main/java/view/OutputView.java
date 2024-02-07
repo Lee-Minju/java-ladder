@@ -6,7 +6,7 @@ import domain.Players;
 
 public class OutputView {
 
-  private final int BLANK_BASE = 6;
+  private static final int BLANK_BASE = 6;
 
   public void showUpperPhase(Players players, Ladder ladder) {
     System.out.println("실행결과\n");
@@ -17,7 +17,7 @@ public class OutputView {
   public void showPlayers(Players players) {
     String result = "";
     for (int i = 0; i < players.getNumberOfPlayers(); i++) {
-      String playersName = players.getPlayerByIndex(i).getPlayerNameValue();
+      String playersName = players.getPlayerByIndex(i).getName();
       String blank = makeBlank(playersName.length());
       result += playersName + blank;
     }

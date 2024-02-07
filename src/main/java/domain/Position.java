@@ -2,7 +2,7 @@ package domain;
 
 public class Position {
 
-  private final int MOST_LEFT_POSITION = 0;
+  private static final int MOST_LEFT_POSITION = 0;
 
   private int value;
 
