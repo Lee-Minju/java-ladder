@@ -46,10 +46,8 @@ public class OutputView {
 
   public String makeBlank(int lengthOfName) {
     int count = BLANK_BASE - lengthOfName;
-    String blank = "";
-    for (int i = 0; i < count; i++) {
-      blank += " ";
-    }
+    String blank = " ";
+    blank = blank.repeat(count);
     return blank;
   }
 }
