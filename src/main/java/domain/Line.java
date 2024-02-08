@@ -19,7 +19,7 @@ public class Line {
       this.points.addAll(candidatePoints);
   }
 
-  public List<Point> makePoints(int numberOfPlayers, NumberGenerator numberGenerator) {
+  private List<Point> makePoints(int numberOfPlayers, NumberGenerator numberGenerator) {
     List<Point> points = new ArrayList<>();
     for (int i = 0; i < numberOfPlayers - 1; i++) {
       int number = numberGenerator.generateNumber();
@@ -28,7 +28,7 @@ public class Line {
     return points;
   }
 
-  public void validateLine(List<Point> candidatePoints, int numberOfPlayers) {
+  private void validateLine(List<Point> candidatePoints, int numberOfPlayers) {
     for (int i = 0; i < numberOfPlayers - 2; i++) {
       if (candidatePoints.get(i).getValue().equals(true) && candidatePoints.get(i + 1).getValue().equals(true)) {
         candidatePoints.get(i + 1).setValue(false);

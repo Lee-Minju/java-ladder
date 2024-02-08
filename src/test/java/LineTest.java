@@ -1,6 +1,7 @@
 import domain.Line;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import tools.BlockedNumberGenerator;
 import tools.NumberGenerator;
@@ -17,16 +18,19 @@ public class LineTest {
     Assertions.assertEquals(testLine.getLength(), numberOfPlayers - 1);
   }
 
+  @DisplayName("가로줄이 겹쳐져서 생성된 라인을 발견하면 validateLine()에서 겹치지 않게 수정해서 Line을 생성한다")
   @Test
-  void 라인에_가로줄이_겹친다면_검증단계에서_예외를_발생한다() {
-    NumberGenerator numberGenerator1 = new BlockedNumberGenerator();
-    NumberGenerator numberGenerator2 = new RandomNumberGenerator();
+  void 라인에_가로줄이_겹친다면_검증단계에서_겹침을_해결한다() {
+    NumberGenerator numberGenerator = new BlockedNumberGenerator();
     int numberOfPlayers = 4;
-    Line testLine = new Line(numberOfPlayers, numberGenerator2); //테스트용 인스턴스생성
+    Line testLine = new Line(numberOfPlayers, numberGenerator);
 
-    List<Boolean> testPoints = testLine.makePoints(numberOfPlayers, numberGenerator1);
-    Assertions.assertThrows(IllegalArgumentException.class, () -> {
-      testLine.validateLine(testPoints, numberOfPlayers);
+    Assertions.assertDoesNotThrow(() -> {
+      for(int i=0; i<numberOfPlayers -2; i++) {
+        if(testLine.getPoint(i).equals(true && testLine.getPoint(i+1).equals(true))){
+          throw new IllegalArgumentException();
+        }
+      }
     });
   }
 }
