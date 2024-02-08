@@ -14,13 +14,9 @@ public class Line {
   }
 
   private void makeLine(int numberOfPlayers, NumberGenerator numberGenerator) {
-    try {
       List<Point> candidatePoints = makePoints(numberOfPlayers, numberGenerator);
       validateLine(candidatePoints, numberOfPlayers);
       this.points.addAll(candidatePoints);
-    } catch (IllegalArgumentException e) {
-      makeLine(numberOfPlayers, numberGenerator);
-    }
   }
 
   public List<Point> makePoints(int numberOfPlayers, NumberGenerator numberGenerator) {
@@ -34,8 +30,8 @@ public class Line {
 
   public void validateLine(List<Point> candidatePoints, int numberOfPlayers) {
     for (int i = 0; i < numberOfPlayers - 2; i++) {
-      if (candidatePoints.get(i).getValue().equals(true) && candidatePoints.get(i + 1).equals(true)) {
-        throw new IllegalArgumentException("[ERROR] 가로줄 겹침");
+      if (candidatePoints.get(i).getValue().equals(true) && candidatePoints.get(i + 1).getValue().equals(true)) {
+        candidatePoints.get(i + 1).setValue(false);
       }
     }
   }

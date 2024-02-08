@@ -4,7 +4,7 @@ public class Point {
 
   private static final int RANDOM_STAND_NUMBER = 5;
 
-  private final Boolean value;
+  private  Boolean value;
 
   public Point(int number) {
     this.value = makePoint(number);
@@ -19,5 +19,9 @@ public class Point {
 
   public Boolean getValue() {
     return this.value;
+  }
+
+  public void setValue(Boolean value) {
+    this.value = value;
   }
 }
