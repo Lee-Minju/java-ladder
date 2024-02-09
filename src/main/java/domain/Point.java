@@ -4,13 +4,13 @@ public class Point {
 
   private static final int RANDOM_STAND_NUMBER = 5;
 
-  private  Boolean value;
+  private boolean value;
 
   public Point(int number) {
     this.value = makePoint(number);
   }
 
-  private Boolean makePoint(int number) {
+  private boolean makePoint(int number) {
     if (number < RANDOM_STAND_NUMBER) {
       return false;
     }
@@ -21,7 +21,7 @@ public class Point {
     return this.value;
   }
 
-  public void setValue(Boolean value) {
+  public void setValue(boolean value) {
     this.value = value;
   }
 }
