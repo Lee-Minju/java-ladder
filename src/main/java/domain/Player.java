@@ -17,16 +17,19 @@ public class Player {
   }
 
   @Override
-  public boolean equals(Object obj) {
-    if (!(obj instanceof Player)) {
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Player p = (Player) obj;
-    return (this.getName().equals(p.getName()));
+    Player player = (Player) o;
+    return Objects.equals(name, player.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(this.getName());
+    return Objects.hash(name);
   }
 }
