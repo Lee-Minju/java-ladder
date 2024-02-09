@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import tools.NumberGenerator;
 
@@ -15,9 +14,9 @@ public class Lines {
     this.value = candidateLines;
   }
 
-  private List<Line> makeLines(int depth, int numberOfPlayers, NumberGenerator ladderSetting){
+  private List<Line> makeLines(int depth, int numberOfPlayers, NumberGenerator ladderSetting) {
     List<Line> lines = new ArrayList<>();
-    for(int i=0; i<depth; i++){
+    for (int i = 0; i < depth; i++) {
       lines.add(new Line(numberOfPlayers, ladderSetting));
     }
     return lines;

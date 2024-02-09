@@ -1,5 +1,4 @@
 import domain.Line;
-import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,8 +25,8 @@ public class LineTest {
     Line testLine = new Line(numberOfPlayers, numberGenerator);
 
     Assertions.assertDoesNotThrow(() -> {
-      for(int i=0; i<numberOfPlayers -2; i++) {
-        if(testLine.getPoint(i).equals(true) && testLine.getPoint(i+1).equals(true)){
+      for (int i = 0; i < numberOfPlayers - 2; i++) {
+        if (testLine.getPoint(i).equals(true) && testLine.getPoint(i + 1).equals(true)) {
           throw new IllegalArgumentException();
         }
       }

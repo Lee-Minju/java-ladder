@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
 import tools.NumberGenerator;
 
 public class Ladder {

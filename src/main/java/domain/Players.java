@@ -2,7 +2,6 @@ package domain;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 public class Players {
@@ -26,7 +25,7 @@ public class Players {
   private void hasDuplicatedName(List<Player> players) {
     Set<Player> duplicateChecker = new HashSet<>();
     duplicateChecker.addAll(players);
-    if(duplicateChecker.size() != players.size()){
+    if (duplicateChecker.size() != players.size()) {
       throw new IllegalArgumentException("[ERROR] 중복된 이름을 입력할 수 없습니다.");
     }
   }

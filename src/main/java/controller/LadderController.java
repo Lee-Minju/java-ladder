@@ -2,10 +2,8 @@ package controller;
 
 import domain.Ladder;
 import domain.LadderDepth;
-import domain.Name;
 import domain.Player;
 import domain.Players;
-import domain.Position;
 import java.util.ArrayList;
 import java.util.List;
 import tools.NumberGenerator;

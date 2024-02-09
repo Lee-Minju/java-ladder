@@ -3,7 +3,6 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import tools.NumberGenerator;
-import tools.RandomNumberGenerator;
 
 public class Line {
 
@@ -14,9 +13,9 @@ public class Line {
   }
 
   private void makeLine(int numberOfPlayers, NumberGenerator numberGenerator) {
-      List<Point> candidatePoints = makePoints(numberOfPlayers, numberGenerator);
-      validateLine(candidatePoints, numberOfPlayers);
-      this.points.addAll(candidatePoints);
+    List<Point> candidatePoints = makePoints(numberOfPlayers, numberGenerator);
+    validateLine(candidatePoints, numberOfPlayers);
+    this.points.addAll(candidatePoints);
   }
 
   private List<Point> makePoints(int numberOfPlayers, NumberGenerator numberGenerator) {
@@ -30,7 +29,8 @@ public class Line {
 
   private void validateLine(List<Point> candidatePoints, int numberOfPlayers) {
     for (int i = 0; i < numberOfPlayers - 2; i++) {
-      if (candidatePoints.get(i).getValue().equals(true) && candidatePoints.get(i + 1).getValue().equals(true)) {
+      if (candidatePoints.get(i).getValue().equals(true) && candidatePoints.get(i + 1).getValue()
+          .equals(true)) {
         candidatePoints.get(i + 1).setValue(false);
       }
     }
