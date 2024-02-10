@@ -21,4 +21,14 @@ public class PositionTest {
     test.moveRight();
     Assertions.assertEquals(test.getValue(), 1);
   }
+
+  @Test
+  void 맨_왼쪽_포지션에서는_왼쪽이동이_불가능하다() {
+    int position = 0;
+
+    Position test = new Position(position);
+    Assertions.assertThrows(IllegalArgumentException.class, () -> {
+      test.moveLeft();
+    });
+  }
 }
