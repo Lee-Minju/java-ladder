@@ -1,5 +1,6 @@
 package controller;
 
+import domain.GameResults;
 import domain.Ladder;
 import domain.LadderDepth;
 import domain.Player;
@@ -19,9 +20,10 @@ public class LadderController {
   public void doLadderGame() {
     NumberGenerator ladderSetting = new RandomNumberGenerator();
     Players players = makePlayers();
+    GameResults gameResults = makeGameResults(players.getNumberOfPlayers());
     LadderDepth ladderDepth = makeLadderDepth(players.getNumberOfPlayers());
     Ladder ladder = new Ladder(ladderDepth, players.getNumberOfPlayers(), ladderSetting);
-    outputView.showUpperPhase(players, ladder);
+    outputView.showUpperPhase(players, ladder, gameResults);
   }
 
   private Players makePlayers() {
@@ -51,6 +53,16 @@ public class LadderController {
     } catch (IllegalArgumentException e) {
       System.out.printf(e.getMessage(), numberOfPlayers - 1);
       return makeLadderDepth(numberOfPlayers);
+    }
+  }
+
+  private GameResults makeGameResults(int numberOfPlayers) {
+    try {
+      GameResults gameResults = new GameResults(inputView.askGameResults(), numberOfPlayers);
+      return gameResults;
+    } catch (IllegalArgumentException e) {
+      System.out.printf(e.getMessage(), numberOfPlayers);
+      return makeGameResults(numberOfPlayers);
     }
   }
 }

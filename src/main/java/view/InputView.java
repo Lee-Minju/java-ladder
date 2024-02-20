@@ -24,4 +24,11 @@ public class InputView {
       throw new IllegalArgumentException("숫자를 입력해 주세요.");
     }
   }
+
+  public List<String> askGameResults() {
+    System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    String input = scanner.nextLine();
+    List<String> results = Arrays.asList(input.split(","));
+    return results;
+  }
 }
