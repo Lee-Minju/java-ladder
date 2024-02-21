@@ -10,15 +10,10 @@ public class OutputView {
   private static final int BLANK_BASE = 6;
 
   public void showUpperPhase(Players players, Ladder ladder, GameResults gameResults) {
-    System.out.println("사다리 결과\n");
+    System.out.println("\n사다리 결과\n");
     showPlayers(players);
     showLadder(ladder);
     showGameResults(gameResults);
-  }
-
-  public void showLowerPhase() {
-    System.out.println("실행 결과\n");
-
   }
 
   private void showGameResults(GameResults gameResults) {
@@ -28,10 +23,11 @@ public class OutputView {
       String blank = makeBlank(resultName.length());
       result += resultName + blank;
     }
-    System.out.println(result);
+    System.out.println(result + "\n");
   }
 
   public void showAll(Players players, GameResults gameResults){
+    System.out.println("\n실행 결과");
     for(int i=0; i<players.getNumberOfPlayers(); i++) {
       System.out.println(players.getPlayerByIndex(i).getName() + " : " + gameResults.getResult(players.getPlayerByIndex(i).getPosition()));
     }
@@ -57,6 +53,7 @@ public class OutputView {
   }
 
   public void showResult(String result) {
+    System.out.println("\n실행 결과");
     System.out.println(result);
     System.out.println("");
   }

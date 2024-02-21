@@ -45,6 +45,6 @@ public class Players {
         return player;
       }
     }
-    throw new IllegalArgumentException("플레이어가 목록에 없습니다.\n");
+    throw new IllegalArgumentException("[ERROR] 플레이어가 목록에 없습니다.\n");
   }
 }
