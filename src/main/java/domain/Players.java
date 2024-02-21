@@ -37,4 +37,14 @@ public class Players {
   public Player getPlayerByIndex(int index) {
     return this.players.get(index);
   }
+
+  public Player getPlayerByName(String name) {
+    for(int i=0; i<getNumberOfPlayers(); i++){
+      Player player = getPlayerByIndex(i);
+      if(player.getName().equals(name)){
+        return player;
+      }
+    }
+    throw new IllegalArgumentException("플레이어가 목록에 없습니다.\n");
+  }
 }

@@ -24,6 +24,30 @@ public class LadderController {
     LadderDepth ladderDepth = makeLadderDepth(players.getNumberOfPlayers());
     Ladder ladder = new Ladder(ladderDepth, players.getNumberOfPlayers(), ladderSetting);
     outputView.showUpperPhase(players, ladder, gameResults);
+    processingGame();
+    presentResult(players, gameResults);
+  }
+
+  private void processingGame() {
+  }
+
+  private void presentResult(Players players, GameResults gameResults) {
+    try {
+      boolean check = true;
+      while (check) {
+        String targetResult = inputView.askPlayer();
+        if (targetResult.equals("all")) {
+          outputView.showAll(players, gameResults);
+          continue;
+        }
+        Player targetPlayer = players.getPlayerByName(targetResult);
+        String result = gameResults.getResult(targetPlayer.getPosition());
+        outputView.showResult(result);
+      }
+    }catch (IllegalArgumentException e){
+      System.out.println(e.getMessage());
+      presentResult(players, gameResults);
+    }
   }
 
   private Players makePlayers() {

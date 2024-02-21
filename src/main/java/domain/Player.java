@@ -14,6 +14,10 @@ public class Player {
     return this.name.getValue();
   }
 
+  public int getPosition() {
+    return this.position.getValue();
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -10,10 +10,15 @@ public class OutputView {
   private static final int BLANK_BASE = 6;
 
   public void showUpperPhase(Players players, Ladder ladder, GameResults gameResults) {
-    System.out.println("실행결과\n");
+    System.out.println("사다리 결과\n");
     showPlayers(players);
     showLadder(ladder);
     showGameResults(gameResults);
+  }
+
+  public void showLowerPhase() {
+    System.out.println("실행 결과\n");
+
   }
 
   private void showGameResults(GameResults gameResults) {
@@ -24,6 +29,13 @@ public class OutputView {
       result += resultName + blank;
     }
     System.out.println(result);
+  }
+
+  public void showAll(Players players, GameResults gameResults){
+    for(int i=0; i<players.getNumberOfPlayers(); i++) {
+      System.out.println(players.getPlayerByIndex(i).getName() + " : " + gameResults.getResult(players.getPlayerByIndex(i).getPosition()));
+    }
+    System.out.println("");
   }
 
   public void showPlayers(Players players) {
@@ -42,6 +54,11 @@ public class OutputView {
       String result = drawLadder(line);
       System.out.println(result);
     }
+  }
+
+  public void showResult(String result) {
+    System.out.println(result);
+    System.out.println("");
   }
 
   private String drawLadder(Line line) {

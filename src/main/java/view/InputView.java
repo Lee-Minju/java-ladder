@@ -31,4 +31,10 @@ public class InputView {
     List<String> results = Arrays.asList(input.split(","));
     return results;
   }
+
+  public String askPlayer() {
+    System.out.println("결과를 보고 싶은 사람은?");
+    String input = scanner.nextLine();
+    return input;
+  }
 }
