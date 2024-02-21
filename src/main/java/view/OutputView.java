@@ -29,7 +29,7 @@ public class OutputView {
   public void showAll(Players players, GameResults gameResults){
     System.out.println("\n실행 결과");
     for(int i=0; i<players.getNumberOfPlayers(); i++) {
-      System.out.println(players.getPlayerByIndex(i).getName() + " : " + gameResults.getResult(players.getPlayerByIndex(i).getPosition()));
+      System.out.println(players.getPlayerByIndex(i).getName() + " : " + gameResults.getResult(players.getPlayerByIndex(i).getPositionValue()));
     }
     System.out.println("");
   }
@@ -45,7 +45,7 @@ public class OutputView {
   }
 
   private void showLadder(Ladder ladder) {
-    for (int i = 0; i < ladder.getDepthValue(); i++) {
+    for (int i = 0; i < ladder.getDepth(); i++) {
       Line line = ladder.getLine(i);
       String result = drawLadder(line);
       System.out.println(result);

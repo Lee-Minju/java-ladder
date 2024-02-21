@@ -14,7 +14,11 @@ public class Player {
     return this.name.getValue();
   }
 
-  public int getPosition() {
+  public Position getPosition() {
+    return this.position;
+  }
+
+  public int getPositionValue() {
     return this.position.getValue();
   }
 
