@@ -29,8 +29,7 @@ public class Line {
 
   private void improvePoints(List<Point> candidatePoints, int numberOfPlayers) {
     for (int i = 0; i < numberOfPlayers - 2; i++) {
-      if (candidatePoints.get(i).getValue().equals(true) && candidatePoints.get(i + 1).getValue()
-          .equals(true)) {
+      if (candidatePoints.get(i).getValue() && candidatePoints.get(i + 1).getValue()) {
         candidatePoints.get(i + 1).setValue(false);
       }
     }

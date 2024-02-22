@@ -24,7 +24,7 @@ public class Ladder {
   }
 
   public Line getLine(int index) {
-    return this.lines.getValue().get(index);
+    return this.lines.getValues().get(index);
   }
 
   public int getDepth() {

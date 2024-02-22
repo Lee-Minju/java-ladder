@@ -6,12 +6,12 @@ import tools.NumberGenerator;
 
 public class Lines {
 
-  private List<Line> value;
+  private List<Line> values;
 
   public Lines(int depth, int numberOfPlayers, NumberGenerator ladderSetting) {
     List<Line> candidateLines = makeLines(depth, numberOfPlayers, ladderSetting);
     validateLines(candidateLines);
-    this.value = candidateLines;
+    this.values = candidateLines;
   }
 
   private List<Line> makeLines(int depth, int numberOfPlayers, NumberGenerator ladderSetting) {
@@ -44,7 +44,7 @@ public class Lines {
     return (candidateLines.get(linesIndex).getPoint(lineIndex));
   }
 
-  public List<Line> getValue() {
-    return value;
+  public List<Line> getValues() {
+    return values;
   }
 }
