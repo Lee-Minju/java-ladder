@@ -39,7 +39,7 @@ public class Line {
     return this.points.size();
   }
 
-  public Boolean getPoint(int index) {
+  public boolean getPoint(int index) {
     return this.points.get(index).getValue();
   }
 }
