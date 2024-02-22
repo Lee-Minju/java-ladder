@@ -8,18 +8,18 @@ public class Ladder {
   private LadderDepth depth;
   private NumberGenerator numberGenerator;
 
-  public Ladder(LadderDepth depth, int numberOfPlayers, NumberGenerator ladderSetting) {
+  public Ladder(LadderDepth depth, int numberOfPlayers, NumberGenerator numberGenerator) {
     this.depth = depth;
-    this.numberGenerator = ladderSetting;
-    makeLadder(depth.getValue(), numberOfPlayers);
+    this.numberGenerator = numberGenerator;
+    this.lines = validateLadder(depth.getValue(), numberOfPlayers);
   }
 
-  private void makeLadder(int depth, int numberOfPlayers) {
+  private Lines validateLadder(int depth, int numberOfPlayers) {
     try {
       Lines candidateLines = new Lines(depth, numberOfPlayers, this.numberGenerator);
-      this.lines = candidateLines;
+      return candidateLines;
     } catch (IllegalArgumentException e) {
-      makeLadder(depth, numberOfPlayers);
+      return validateLadder(depth, numberOfPlayers);
     }
   }
 
