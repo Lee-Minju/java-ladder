@@ -6,7 +6,7 @@ import tools.NumberGenerator;
 
 public class Line {
 
-  private List<Point> points = new ArrayList<>();
+  private List<Point> points;
 
   public Line(int numberOfPlayer, NumberGenerator numberGenerator) {
     makeLine(numberOfPlayer, numberGenerator);
@@ -15,7 +15,7 @@ public class Line {
   private void makeLine(int numberOfPlayers, NumberGenerator numberGenerator) {
     List<Point> candidatePoints = makePoints(numberOfPlayers, numberGenerator);
     validateLine(candidatePoints, numberOfPlayers);
-    this.points.addAll(candidatePoints);
+    this.points = new ArrayList<>(candidatePoints);
   }
 
   private List<Point> makePoints(int numberOfPlayers, NumberGenerator numberGenerator) {

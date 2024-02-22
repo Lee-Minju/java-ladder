@@ -22,6 +22,10 @@ public class Name {
     }
   }
 
+  public String getValue() {
+    return this.value;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -39,9 +43,5 @@ public class Name {
   @Override
   public int hashCode() {
     return value != null ? value.hashCode() : 0;
-  }
-
-  public String getValue() {
-    return this.value;
   }
 }
