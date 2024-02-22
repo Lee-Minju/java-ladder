@@ -33,7 +33,7 @@ public class InputView {
   }
 
   public String askPlayer() {
-    System.out.println("결과를 보고 싶은 사람은?");
+    System.out.println("결과를 보고 싶은 사람은? (종료를 원하면 end 를 입력해 주세요)");
     String input = scanner.nextLine();
     return input;
   }

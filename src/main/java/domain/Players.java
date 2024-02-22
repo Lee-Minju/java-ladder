@@ -39,9 +39,9 @@ public class Players {
   }
 
   public Player getPlayerByName(String name) {
-    for(int i=0; i<getNumberOfPlayers(); i++){
+    for (int i = 0; i < getNumberOfPlayers(); i++) {
       Player player = getPlayerByIndex(i);
-      if(player.getName().equals(name)){
+      if (player.getName().equals(name)) {
         return player;
       }
     }

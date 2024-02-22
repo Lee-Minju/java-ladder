@@ -26,15 +26,16 @@ public class OutputView {
     System.out.println(result + "\n");
   }
 
-  public void showAll(Players players, GameResults gameResults){
+  public void showAll(Players players, GameResults gameResults) {
     System.out.println("\n실행 결과");
-    for(int i=0; i<players.getNumberOfPlayers(); i++) {
-      System.out.println(players.getPlayerByIndex(i).getName() + " : " + gameResults.getResult(players.getPlayerByIndex(i).getPositionValue()));
+    for (int i = 0; i < players.getNumberOfPlayers(); i++) {
+      System.out.println(players.getPlayerByIndex(i).getName() + " : " + gameResults.getResult(
+          players.getPlayerByIndex(i).getPositionValue()));
     }
     System.out.println("");
   }
 
-  public void showPlayers(Players players) {
+  private void showPlayers(Players players) {
     String result = "";
     for (int i = 0; i < players.getNumberOfPlayers(); i++) {
       String playersName = players.getPlayerByIndex(i).getName();
