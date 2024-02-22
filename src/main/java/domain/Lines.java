@@ -23,8 +23,8 @@ public class Lines {
   }
 
   private void validateLines(List<Line> candidateLines) {
-    int numberOfLine = candidateLines.get(0).getLength();
-    for (int i = 0; i < numberOfLine; i++) {
+    int numberOfPoints = candidateLines.get(0).getLength();
+    for (int i = 0; i < numberOfPoints; i++) {
       if (isRowEmpty(candidateLines, i)) {
         throw new IllegalArgumentException("[ERROR] 사다리가 끊어져 있습니다.");
       }
