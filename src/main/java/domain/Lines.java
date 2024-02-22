@@ -33,15 +33,15 @@ public class Lines {
 
   private boolean isRowEmpty(List<Line> candidateLines, int lineIndex) {
     for (int i = 0; i < candidateLines.size(); i++) {
-      if (hasHorizon(candidateLines, lineIndex, i)) {
+      if (hasHorizon(candidateLines.get(i), lineIndex)) {
         return false;
       }
     }
     return true;
   }
 
-  private boolean hasHorizon(List<Line> candidateLines, int lineIndex, int linesIndex) {
-    return (candidateLines.get(linesIndex).getPoint(lineIndex));
+  private boolean hasHorizon(Line candidateLine, int lineIndex) {
+    return (candidateLine.getPoint(lineIndex));
   }
 
   public List<Line> getValues() {
