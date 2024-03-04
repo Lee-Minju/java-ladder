@@ -23,8 +23,7 @@ public class LadderController {
     NumberGenerator ladderSetting = new RandomNumberGenerator();
     Players players = makePlayers();
     GameResults gameResults = makeGameResults(players.getNumberOfPlayers());
-    LadderDepth ladderDepth = makeLadderDepth(players.getNumberOfPlayers());
-    Ladder ladder = new Ladder(ladderDepth, players.getNumberOfPlayers(), ladderSetting);
+    Ladder ladder = makeLadder(players.getNumberOfPlayers(), ladderSetting);
     outputView.showUpperPhase(players, ladder, gameResults);
     processGame(players, ladder);
     presentResult(players, gameResults);
@@ -143,13 +142,14 @@ public class LadderController {
     return playerLineUp;
   }
 
-  private LadderDepth makeLadderDepth(int numberOfPlayers) {
+  private Ladder makeLadder(int numberOfPlayers, NumberGenerator ladderSetting) {
     try {
-      LadderDepth ladderDepth = new LadderDepth(inputView.askLadderDepth(), numberOfPlayers);
-      return ladderDepth;
+      int depthInput = inputView.askLadderDepth();
+      Ladder ladder = new Ladder(depthInput, numberOfPlayers, ladderSetting);
+      return ladder;
     } catch (IllegalArgumentException e) {
       System.out.printf(e.getMessage(), numberOfPlayers - 1);
-      return makeLadderDepth(numberOfPlayers);
+      return makeLadder(numberOfPlayers, ladderSetting);
     }
   }
 

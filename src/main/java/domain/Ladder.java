@@ -8,10 +8,10 @@ public class Ladder {
   private LadderDepth depth;
   private NumberGenerator numberGenerator;
 
-  public Ladder(LadderDepth depth, int numberOfPlayers, NumberGenerator numberGenerator) {
-    this.depth = depth;
+  public Ladder(int depth, int numberOfPlayers, NumberGenerator numberGenerator) {
+    this.depth = new LadderDepth(depth, numberOfPlayers);
     this.numberGenerator = numberGenerator;
-    this.lines = validateLadder(depth.getValue(), numberOfPlayers);
+    this.lines = validateLadder(this.depth.getValue(), numberOfPlayers);
   }
 
   private Lines validateLadder(int depth, int numberOfPlayers) {
