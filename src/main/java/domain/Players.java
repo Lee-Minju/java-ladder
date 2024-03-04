@@ -23,8 +23,7 @@ public class Players {
   }
 
   private void hasDuplicatedName(List<Player> players) {
-    Set<Player> duplicateChecker = new HashSet<>();
-    duplicateChecker.addAll(players);
+    Set<Player> duplicateChecker = new HashSet<>(players);
     if (duplicateChecker.size() != players.size()) {
       throw new IllegalArgumentException("[ERROR] 중복된 이름을 입력할 수 없습니다.");
     }
@@ -36,5 +35,15 @@ public class Players {
 
   public Player getPlayerByIndex(int index) {
     return this.players.get(index);
+  }
+
+  public Player getPlayerByName(String name) {
+    for (int i = 0; i < getNumberOfPlayers(); i++) {
+      Player player = getPlayerByIndex(i);
+      if (player.getName().equals(name)) {
+        return player;
+      }
+    }
+    throw new IllegalArgumentException("[ERROR] 플레이어가 목록에 없습니다.\n");
   }
 }

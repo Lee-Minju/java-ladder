@@ -1,5 +1,6 @@
 package view;
 
+import domain.GameResults;
 import domain.Ladder;
 import domain.Line;
 import domain.Players;
@@ -8,13 +9,33 @@ public class OutputView {
 
   private static final int BLANK_BASE = 6;
 
-  public void showUpperPhase(Players players, Ladder ladder) {
-    System.out.println("실행결과\n");
+  public void showUpperPhase(Players players, Ladder ladder, GameResults gameResults) {
+    System.out.println("\n사다리 결과\n");
     showPlayers(players);
     showLadder(ladder);
+    showGameResults(gameResults);
   }
 
-  public void showPlayers(Players players) {
+  private void showGameResults(GameResults gameResults) {
+    String result = "";
+    for (int i = 0; i < gameResults.getSize(); i++) {
+      String resultName = gameResults.getResult(i);
+      String blank = makeBlank(resultName.length());
+      result += resultName + blank;
+    }
+    System.out.println(result + "\n");
+  }
+
+  public void showAll(Players players, GameResults gameResults) {
+    System.out.println("\n실행 결과");
+    for (int i = 0; i < players.getNumberOfPlayers(); i++) {
+      System.out.println(players.getPlayerByIndex(i).getName() + " : " + gameResults.getResult(
+          players.getPlayerByIndex(i).getPositionValue()));
+    }
+    System.out.println("");
+  }
+
+  private void showPlayers(Players players) {
     String result = "";
     for (int i = 0; i < players.getNumberOfPlayers(); i++) {
       String playersName = players.getPlayerByIndex(i).getName();
@@ -24,12 +45,18 @@ public class OutputView {
     System.out.println(result);
   }
 
-  public void showLadder(Ladder ladder) {
-    for (int i = 0; i < ladder.getDepthValue(); i++) {
+  private void showLadder(Ladder ladder) {
+    for (int i = 0; i < ladder.getDepth(); i++) {
       Line line = ladder.getLine(i);
       String result = drawLadder(line);
       System.out.println(result);
     }
+  }
+
+  public void showResult(String result) {
+    System.out.println("\n실행 결과");
+    System.out.println(result);
+    System.out.println("");
   }
 
   private String drawLadder(Line line) {
@@ -44,10 +71,9 @@ public class OutputView {
     return ladderParts;
   }
 
-  public String makeBlank(int lengthOfName) {
+  private String makeBlank(int lengthOfName) {
     int count = BLANK_BASE - lengthOfName;
-    String blank = " ";
-    blank = blank.repeat(count);
+    String blank = " ".repeat(count);
     return blank;
   }
 }

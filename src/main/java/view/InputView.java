@@ -21,7 +21,20 @@ public class InputView {
       String input = scanner.nextLine();
       return Integer.parseInt(input);
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException("숫자를 입력해 주세요.");
+      throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
     }
+  }
+
+  public List<String> askGameResults() {
+    System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    String input = scanner.nextLine();
+    List<String> results = Arrays.asList(input.split(","));
+    return results;
+  }
+
+  public String askPlayer() {
+    System.out.println("결과를 보고 싶은 사람은? (종료를 원하면 end 를 입력해 주세요)");
+    String input = scanner.nextLine();
+    return input;
   }
 }

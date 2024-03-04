@@ -1,5 +1,6 @@
 package controller;
 
+import domain.GameResults;
 import domain.Ladder;
 import domain.LadderDepth;
 import domain.Player;
@@ -13,15 +14,113 @@ import view.OutputView;
 
 public class LadderController {
 
+  private static final int MOST_LEFT_POSITION = 0;
+
   private final InputView inputView = new InputView();
   private final OutputView outputView = new OutputView();
 
   public void doLadderGame() {
     NumberGenerator ladderSetting = new RandomNumberGenerator();
     Players players = makePlayers();
+    GameResults gameResults = makeGameResults(players.getNumberOfPlayers());
     LadderDepth ladderDepth = makeLadderDepth(players.getNumberOfPlayers());
     Ladder ladder = new Ladder(ladderDepth, players.getNumberOfPlayers(), ladderSetting);
-    outputView.showUpperPhase(players, ladder);
+    outputView.showUpperPhase(players, ladder, gameResults);
+    processGame(players, ladder);
+    presentResult(players, gameResults);
+  }
+
+  private void processGame(Players players, Ladder ladder) {
+    for (int i = 0; i < players.getNumberOfPlayers(); i++) {
+      Player currentPlayer = players.getPlayerByIndex(i);
+      processPlayersPosition(currentPlayer, ladder, players.getNumberOfPlayers());
+    }
+  }
+
+  private void presentResult(Players players, GameResults gameResults) {
+    try {
+      decideTarget(players, gameResults);
+    } catch (IllegalArgumentException e) {
+      System.out.println(e.getMessage());
+      presentResult(players, gameResults);
+    }
+  }
+
+  private void decideTarget(Players players, GameResults gameResults) {
+    String targetResult = "";
+    while (isEnd(targetResult)) {
+      targetResult = inputView.askPlayer();
+      presentTarget(players, gameResults, targetResult);
+    }
+  }
+
+  private void presentTarget(Players players, GameResults gameResults, String targetResult) {
+    if (!isEnd(targetResult)) {
+      return;
+    }
+    if (targetResult.equals("all")) {
+      outputView.showAll(players, gameResults);
+      return;
+    }
+    Player targetPlayer = players.getPlayerByName(targetResult);
+    outputView.showResult(gameResults.getResult(targetPlayer.getPositionValue()));
+  }
+
+  private boolean isEnd(String targetResult) {
+    if (targetResult.equals("end")) {
+      return false;
+    }
+    return true;
+  }
+
+  private void processPlayersPosition(Player currentPlayer, Ladder ladder, int numberOfPlayers) {
+    for (int i = 0; i < ladder.getDepth(); i++) {
+      processPositionForDepth(currentPlayer, ladder, i, numberOfPlayers);
+    }
+  }
+
+  private void processPositionForDepth(Player currentPlayer, Ladder ladder, int depth,
+      int numberOfPlayers) {
+    if (isMostLeftPosition(currentPlayer) || isMostRightPosition(currentPlayer, numberOfPlayers)) {
+      processSpecialCase(currentPlayer, ladder, depth, numberOfPlayers);
+      return;
+    }
+    if (ladder.getLine(depth).getPoint(currentPlayer.getPositionValue() - 1)) {
+      moveLeftIfPossible(currentPlayer, ladder, depth);
+      return;
+    }
+    moveRightIfPossible(currentPlayer, ladder, depth);
+  }
+
+  private void processSpecialCase(Player currentPlayer, Ladder ladder, int depth,
+      int numberOfPlayers) {
+    if (isMostLeftPosition(currentPlayer)) {
+      moveRightIfPossible(currentPlayer, ladder, depth);
+      return;
+    }
+    if (isMostRightPosition(currentPlayer, numberOfPlayers)) {
+      moveLeftIfPossible(currentPlayer, ladder, depth);
+    }
+  }
+
+  private boolean isMostLeftPosition(Player currentPlayer) {
+    return currentPlayer.getPositionValue() == MOST_LEFT_POSITION;
+  }
+
+  private boolean isMostRightPosition(Player currentPlayer, int numberOfPlayers) {
+    return currentPlayer.getPositionValue() == numberOfPlayers - 1;
+  }
+
+  private void moveRightIfPossible(Player currentPlayer, Ladder ladder, int depth) {
+    if (ladder.getLine(depth).getPoint(currentPlayer.getPositionValue())) {
+      currentPlayer.getPosition().moveRight();
+    }
+  }
+
+  private void moveLeftIfPossible(Player currentPlayer, Ladder ladder, int depth) {
+    if (ladder.getLine(depth).getPoint(currentPlayer.getPositionValue() - 1)) {
+      currentPlayer.getPosition().moveLeft();
+    }
   }
 
   private Players makePlayers() {
@@ -51,6 +150,16 @@ public class LadderController {
     } catch (IllegalArgumentException e) {
       System.out.printf(e.getMessage(), numberOfPlayers - 1);
       return makeLadderDepth(numberOfPlayers);
+    }
+  }
+
+  private GameResults makeGameResults(int numberOfPlayers) {
+    try {
+      GameResults gameResults = new GameResults(inputView.askGameResults(), numberOfPlayers);
+      return gameResults;
+    } catch (IllegalArgumentException e) {
+      System.out.printf(e.getMessage(), numberOfPlayers);
+      return makeGameResults(numberOfPlayers);
     }
   }
 }
