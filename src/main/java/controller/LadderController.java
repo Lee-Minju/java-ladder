@@ -1,5 +1,6 @@
 package controller;
 
+import domain.GameResult;
 import domain.GameResults;
 import domain.Ladder;
 import domain.Player;
@@ -147,11 +148,21 @@ public class LadderController {
 
   private GameResults makeGameResults(int numberOfPlayers) {
     try {
-      GameResults gameResults = new GameResults(inputView.askGameResults(), numberOfPlayers);
-      return gameResults;
+      List<String> gameResultsInString = inputView.askGameResults();
+      List<GameResult> gameResultLineUp = makeGameResultLineUp(gameResultsInString);
+      return new GameResults(gameResultLineUp, numberOfPlayers);
     } catch (IllegalArgumentException e) {
       System.out.printf(e.getMessage(), numberOfPlayers);
       return makeGameResults(numberOfPlayers);
     }
+  }
+
+  private List<GameResult> makeGameResultLineUp(List<String> gameResultsInString) {
+    List<GameResult> gameResultLineUp = new ArrayList<>();
+    for (int i=0; i<gameResultsInString.size(); i++) {
+      GameResult gameResult = new GameResult(gameResultsInString.get(i));
+      gameResultLineUp.add(gameResult);
+    }
+    return gameResultLineUp;
   }
 }

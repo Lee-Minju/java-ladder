@@ -4,24 +4,24 @@ import java.util.List;
 
 public class GameResults {
 
-  private List<String> value;
+  private List<GameResult> gameResults;
 
-  public GameResults(List<String> value, int numberOfPlayers) {
-    validateGameResults(value, numberOfPlayers);
-    this.value = value;
+  public GameResults(List<GameResult> gameResults, int numberOfPlayers) {
+    validateGameResults(gameResults, numberOfPlayers);
+    this.gameResults = gameResults;
   }
 
-  private void validateGameResults(List<String> value, int numberOfPlayers) {
+  private void validateGameResults(List<GameResult> value, int numberOfPlayers) {
     if (value.size() != numberOfPlayers) {
       throw new IllegalArgumentException("[ERROR] 결과의 갯수는 %d가 되어야 합니다.\n");
     }
   }
 
   public String getResult(int index) {
-    return this.value.get(index);
+    return this.gameResults.get(index).getValue();
   }
 
   public int getSize() {
-    return this.value.size();
+    return this.gameResults.size();
   }
 }
