@@ -2,7 +2,6 @@ package controller;
 
 import domain.GameResults;
 import domain.Ladder;
-import domain.LadderDepth;
 import domain.Player;
 import domain.Players;
 import java.util.ArrayList;
@@ -14,7 +13,8 @@ import view.OutputView;
 
 public class LadderController {
 
-  private static final int MOST_LEFT_POSITION = 0;
+  private static final String END_COMMAND = "end";
+  private static final String SHOW_ALL_COMMAND = "all";
 
   private final InputView inputView = new InputView();
   private final OutputView outputView = new OutputView();
@@ -38,15 +38,14 @@ public class LadderController {
 
   private void presentResult(Players players, GameResults gameResults) {
     try {
-      decideTarget(players, gameResults);
+      decideTarget(players, gameResults, " ");
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
       presentResult(players, gameResults);
     }
   }
 
-  private void decideTarget(Players players, GameResults gameResults) {
-    String targetResult = "";
+  private void decideTarget(Players players, GameResults gameResults, String targetResult) {
     while (isEnd(targetResult)) {
       targetResult = inputView.askPlayer();
       presentTarget(players, gameResults, targetResult);
@@ -57,7 +56,7 @@ public class LadderController {
     if (!isEnd(targetResult)) {
       return;
     }
-    if (targetResult.equals("all")) {
+    if (targetResult.equals(SHOW_ALL_COMMAND)) {
       outputView.showAll(players, gameResults);
       return;
     }
@@ -66,7 +65,7 @@ public class LadderController {
   }
 
   private boolean isEnd(String targetResult) {
-    if (targetResult.equals("end")) {
+    if (targetResult.equals(END_COMMAND)) {
       return false;
     }
     return true;
@@ -74,13 +73,14 @@ public class LadderController {
 
   private void processPlayersPosition(Player currentPlayer, Ladder ladder, int numberOfPlayers) {
     for (int i = 0; i < ladder.getDepth(); i++) {
-      processPositionForDepth(currentPlayer, ladder, i, numberOfPlayers);
+      processPositionForEachDepth(currentPlayer, ladder, i, numberOfPlayers);
     }
   }
 
-  private void processPositionForDepth(Player currentPlayer, Ladder ladder, int depth,
+  private void processPositionForEachDepth(Player currentPlayer, Ladder ladder, int depth,
       int numberOfPlayers) {
-    if (isMostLeftPosition(currentPlayer) || isMostRightPosition(currentPlayer, numberOfPlayers)) {
+    if (currentPlayer.getPosition().isMostLeftPosition() || currentPlayer.getPosition()
+        .isMostRightPosition(numberOfPlayers)) {
       processSpecialCase(currentPlayer, ladder, depth, numberOfPlayers);
       return;
     }
@@ -93,21 +93,13 @@ public class LadderController {
 
   private void processSpecialCase(Player currentPlayer, Ladder ladder, int depth,
       int numberOfPlayers) {
-    if (isMostLeftPosition(currentPlayer)) {
+    if (currentPlayer.getPosition().isMostLeftPosition()) {
       moveRightIfPossible(currentPlayer, ladder, depth);
       return;
     }
-    if (isMostRightPosition(currentPlayer, numberOfPlayers)) {
+    if (currentPlayer.getPosition().isMostRightPosition(numberOfPlayers)) {
       moveLeftIfPossible(currentPlayer, ladder, depth);
     }
-  }
-
-  private boolean isMostLeftPosition(Player currentPlayer) {
-    return currentPlayer.getPositionValue() == MOST_LEFT_POSITION;
-  }
-
-  private boolean isMostRightPosition(Player currentPlayer, int numberOfPlayers) {
-    return currentPlayer.getPositionValue() == numberOfPlayers - 1;
   }
 
   private void moveRightIfPossible(Player currentPlayer, Ladder ladder, int depth) {
