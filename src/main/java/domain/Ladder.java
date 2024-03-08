@@ -11,15 +11,15 @@ public class Ladder {
   public Ladder(int depth, int numberOfPlayers, NumberGenerator numberGenerator) {
     this.depth = new LadderDepth(depth, numberOfPlayers);
     this.numberGenerator = numberGenerator;
-    this.lines = validateLadder(this.depth.getValue(), numberOfPlayers);
+    this.lines = buildLadder(this.depth.getValue(), numberOfPlayers);
   }
 
-  private Lines validateLadder(int depth, int numberOfPlayers) {
+  private Lines buildLadder(int depth, int numberOfPlayers) {
     try {
       Lines candidateLines = new Lines(depth, numberOfPlayers, this.numberGenerator);
       return candidateLines;
     } catch (IllegalArgumentException e) {
-      return validateLadder(depth, numberOfPlayers);
+      return buildLadder(depth, numberOfPlayers);
     }
   }
 
