@@ -62,7 +62,7 @@ public class LadderController {
       return;
     }
     Player targetPlayer = players.getPlayerByName(targetResult);
-    outputView.showResult(gameResults.getResult(targetPlayer.getPositionValue()));
+    outputView.showResult(gameResults.getResults().get(targetPlayer.getPositionValue()).getValue());
   }
 
   private boolean isEnd(String targetResult) {
@@ -159,7 +159,7 @@ public class LadderController {
 
   private List<GameResult> makeGameResultLineUp(List<String> gameResultsInString) {
     List<GameResult> gameResultLineUp = new ArrayList<>();
-    for (int i=0; i<gameResultsInString.size(); i++) {
+    for (int i = 0; i < gameResultsInString.size(); i++) {
       GameResult gameResult = new GameResult(gameResultsInString.get(i));
       gameResultLineUp.add(gameResult);
     }

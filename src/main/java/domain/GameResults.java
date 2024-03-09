@@ -17,8 +17,8 @@ public class GameResults {
     }
   }
 
-  public String getResult(int index) {
-    return this.gameResults.get(index).getValue();
+  public List<GameResult> getResults() {
+    return this.gameResults;
   }
 
   public int getSize() {

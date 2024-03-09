@@ -19,7 +19,7 @@ public class OutputView {
   private void showGameResults(GameResults gameResults) {
     String result = "";
     for (int i = 0; i < gameResults.getSize(); i++) {
-      String resultName = gameResults.getResult(i);
+      String resultName = gameResults.getResults().get(i).getValue();
       String blank = makeBlank(resultName.length());
       result += resultName + blank;
     }
@@ -29,8 +29,9 @@ public class OutputView {
   public void showAll(Players players, GameResults gameResults) {
     System.out.println("\n실행 결과");
     for (int i = 0; i < players.getNumberOfPlayers(); i++) {
-      System.out.println(players.getPlayerByIndex(i).getName() + " : " + gameResults.getResult(
-          players.getPlayerByIndex(i).getPositionValue()));
+      int indexOfPlayer = players.getPlayerByIndex(i).getPositionValue();
+      String resultOfGame = gameResults.getResults().get(indexOfPlayer).getValue();
+      System.out.println(players.getPlayerByIndex(i).getName() + " : " + resultOfGame);
     }
     System.out.println("");
   }
