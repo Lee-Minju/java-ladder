@@ -23,11 +23,11 @@ public class Line {
       int number = numberGenerator.generateNumber();
       points.add(new Point(number));
     }
-    improvePoints(points, numberOfPlayers);
+    removeDuplicate(points, numberOfPlayers);
     return points;
   }
 
-  private void improvePoints(List<Point> candidatePoints, int numberOfPlayers) {
+  private void removeDuplicate(List<Point> candidatePoints, int numberOfPlayers) {
     for (int i = 0; i < numberOfPlayers - 2; i++) {
       if (candidatePoints.get(i).getValue() && candidatePoints.get(i + 1).getValue()) {
         candidatePoints.get(i + 1).setValue(false);
