@@ -40,7 +40,7 @@ public class Players {
   public Player getPlayerByName(String name) {
     for (int i = 0; i < getNumberOfPlayers(); i++) {
       Player player = getPlayerByIndex(i);
-      if (player.getName().equals(name)) {
+      if (player.hasSameName(name)) {
         return player;
       }
     }
