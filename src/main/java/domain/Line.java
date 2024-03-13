@@ -12,6 +12,10 @@ public class Line {
     makeLine(numberOfPlayer, numberGenerator);
   }
 
+  public Line(Line line) {
+    this.points = line.points;
+  }
+
   private void makeLine(int numberOfPlayers, NumberGenerator numberGenerator) {
     List<Point> candidatePoints = makePoints(numberOfPlayers, numberGenerator);
     this.points = new ArrayList<>(candidatePoints);

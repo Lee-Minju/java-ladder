@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import tools.NumberGenerator;
 import tools.RandomNumberGenerator;
 
@@ -17,14 +18,15 @@ public class Lines {
 
   private List<Line> makeLines(int depth, int numberOfPlayers, NumberGenerator ladderSetting) {
     List<Line> candidateLines = makeCandidateLines(depth, numberOfPlayers, ladderSetting);
-    if(checkLinesForRow(candidateLines)) {
+    if (checkLinesForRow(candidateLines)) {
       return candidateLines;
     }
     NumberGenerator randomSetting = new RandomNumberGenerator();
-    return  makeLines(depth, numberOfPlayers, randomSetting);
+    return makeLines(depth, numberOfPlayers, randomSetting);
   }
 
-  private List<Line> makeCandidateLines(int depth, int numberOfPlayers, NumberGenerator ladderSetting) {
+  private List<Line> makeCandidateLines(int depth, int numberOfPlayers,
+      NumberGenerator ladderSetting) {
     List<Line> lines = new ArrayList<>();
     for (int i = 0; i < depth; i++) {
       lines.add(new Line(numberOfPlayers, ladderSetting));
@@ -56,6 +58,6 @@ public class Lines {
   }
 
   public List<Line> getValues() {
-    return values;
+    return values.stream().map(Line::new).collect(Collectors.toUnmodifiableList());
   }
 }
