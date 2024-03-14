@@ -15,7 +15,6 @@ public class Lines {
     this.values = lines;
   }
 
-
   private List<Line> makeLines(int depth, int numberOfPlayers, NumberGenerator ladderSetting) {
     List<Line> candidateLines = makeCandidateLines(depth, numberOfPlayers, ladderSetting);
     if (checkLinesForRow(candidateLines)) {
@@ -46,15 +45,15 @@ public class Lines {
 
   private boolean isRowEmpty(List<Line> candidateLines, int lineIndex) {
     for (int i = 0; i < candidateLines.size(); i++) {
-      if (hasHorizon(candidateLines.get(i), lineIndex)) {
+      if (candidateLines.get(i).getPoint(lineIndex)) {
         return false;
       }
     }
     return true;
   }
 
-  private boolean hasHorizon(Line candidateLine, int lineIndex) {
-    return (candidateLine.getPoint(lineIndex));
+  public boolean hasHorizon(int linesDepth, int lineIndex) {
+    return this.values.get(linesDepth).getPoint(lineIndex);
   }
 
   public List<Line> getValues() {

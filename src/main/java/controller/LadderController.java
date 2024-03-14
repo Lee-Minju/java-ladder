@@ -1,5 +1,8 @@
 package controller;
 
+import static tools.PointStatus.LEFT;
+import static tools.PointStatus.RIGHT;
+
 import domain.GameResult;
 import domain.GameResults;
 import domain.Ladder;
@@ -8,6 +11,7 @@ import domain.Players;
 import java.util.ArrayList;
 import java.util.List;
 import tools.NumberGenerator;
+import tools.PointStatus;
 import tools.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -73,45 +77,20 @@ public class LadderController {
   }
 
   private void processPlayersPosition(Player currentPlayer, Ladder ladder, int numberOfPlayers) {
-    for (int i = 0; i < ladder.getDepth(); i++) {
-      processPositionForEachDepth(currentPlayer, ladder, i, numberOfPlayers);
+    for (int currentDepth = 0; currentDepth < ladder.getDepth(); currentDepth++) {
+      processPositionForEachDepth(currentPlayer, ladder, currentDepth, numberOfPlayers);
     }
   }
 
-  private void processPositionForEachDepth(Player currentPlayer, Ladder ladder, int depth,
+  private void processPositionForEachDepth(Player currentPlayer, Ladder ladder, int currentDepth,
       int numberOfPlayers) {
-    if (currentPlayer.getPosition().isMostLeftPosition() || currentPlayer.getPosition()
-        .isMostRightPosition(numberOfPlayers)) {
-      processSpecialCase(currentPlayer, ladder, depth, numberOfPlayers);
-      return;
-    }
-    if (ladder.getLine(depth).getPoint(currentPlayer.getPositionValue() - 1)) {
-      moveLeftIfPossible(currentPlayer, ladder, depth);
-      return;
-    }
-    moveRightIfPossible(currentPlayer, ladder, depth);
-  }
-
-  private void processSpecialCase(Player currentPlayer, Ladder ladder, int depth,
-      int numberOfPlayers) {
-    if (currentPlayer.getPosition().isMostLeftPosition()) {
-      moveRightIfPossible(currentPlayer, ladder, depth);
-      return;
-    }
-    if (currentPlayer.getPosition().isMostRightPosition(numberOfPlayers)) {
-      moveLeftIfPossible(currentPlayer, ladder, depth);
-    }
-  }
-
-  private void moveRightIfPossible(Player currentPlayer, Ladder ladder, int depth) {
-    if (ladder.getLine(depth).getPoint(currentPlayer.getPositionValue())) {
-      currentPlayer.getPosition().moveRight();
-    }
-  }
-
-  private void moveLeftIfPossible(Player currentPlayer, Ladder ladder, int depth) {
-    if (ladder.getLine(depth).getPoint(currentPlayer.getPositionValue() - 1)) {
+    PointStatus currentStatus = ladder.isPossibleMoveNow(currentPlayer, currentDepth,
+        numberOfPlayers);
+    if (currentStatus.equals(LEFT)) {
       currentPlayer.getPosition().moveLeft();
+    }
+    if (currentStatus.equals(RIGHT)) {
+      currentPlayer.getPosition().moveRight();
     }
   }
 
