@@ -20,7 +20,8 @@ public class Ladder {
   }
 
   public PointStatus isPossibleMoveNow(Player player, int currentDepth, int numberOfPlayers) {
-    if (player.getPosition().isMostLeftPosition() || player.getPosition().isMostRightPosition(numberOfPlayers)) {
+    if (player.getPosition().isMostLeftPosition() || player.getPosition()
+        .isMostRightPosition(numberOfPlayers)) {
       return checkForSpecialCase(player, currentDepth);
     }
     if (this.lines.hasHorizon(currentDepth, player.getPositionValue() - 1)) {
