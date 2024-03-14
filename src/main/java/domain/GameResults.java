@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameResults {
 
@@ -18,7 +19,7 @@ public class GameResults {
   }
 
   public List<GameResult> getResults() {
-    return this.gameResults;
+    return List.copyOf(this.gameResults);
   }
 
   public int getSize() {

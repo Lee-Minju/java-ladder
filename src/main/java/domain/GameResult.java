@@ -2,7 +2,7 @@ package domain;
 
 public class GameResult {
 
-  private String gameResult;
+  private final String gameResult;
 
   public GameResult(String gameResult) {
     this.gameResult = gameResult;
