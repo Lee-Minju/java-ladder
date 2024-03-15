@@ -10,8 +10,20 @@ public class Player {
     this.position = new Position(position);
   }
 
+  public boolean hasSameName(String name) {
+    return this.getName().equals(name);
+  }
+
   public String getName() {
     return this.name.getValue();
+  }
+
+  public Position getPosition() {
+    return this.position;
+  }
+
+  public int getPositionValue() {
+    return this.position.getValue();
   }
 
   @Override

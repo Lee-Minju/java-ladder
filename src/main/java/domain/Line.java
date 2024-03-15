@@ -6,16 +6,19 @@ import tools.NumberGenerator;
 
 public class Line {
 
-  private List<Point> points = new ArrayList<>();
+  private List<Point> points;
 
   public Line(int numberOfPlayer, NumberGenerator numberGenerator) {
     makeLine(numberOfPlayer, numberGenerator);
   }
 
+  public Line(Line line) {
+    this.points = line.points;
+  }
+
   private void makeLine(int numberOfPlayers, NumberGenerator numberGenerator) {
     List<Point> candidatePoints = makePoints(numberOfPlayers, numberGenerator);
-    validateLine(candidatePoints, numberOfPlayers);
-    this.points.addAll(candidatePoints);
+    this.points = new ArrayList<>(candidatePoints);
   }
 
   private List<Point> makePoints(int numberOfPlayers, NumberGenerator numberGenerator) {
@@ -24,13 +27,13 @@ public class Line {
       int number = numberGenerator.generateNumber();
       points.add(new Point(number));
     }
+    removeDuplicate(points, numberOfPlayers);
     return points;
   }
 
-  private void validateLine(List<Point> candidatePoints, int numberOfPlayers) {
+  private void removeDuplicate(List<Point> candidatePoints, int numberOfPlayers) {
     for (int i = 0; i < numberOfPlayers - 2; i++) {
-      if (candidatePoints.get(i).getValue().equals(true) && candidatePoints.get(i + 1).getValue()
-          .equals(true)) {
+      if (candidatePoints.get(i).getValue() && candidatePoints.get(i + 1).getValue()) {
         candidatePoints.get(i + 1).setValue(false);
       }
     }
@@ -40,7 +43,7 @@ public class Line {
     return this.points.size();
   }
 
-  public Boolean getPoint(int index) {
+  public boolean getPoint(int index) {
     return this.points.get(index).getValue();
   }
 }

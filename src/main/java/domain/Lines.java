@@ -2,19 +2,30 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import tools.NumberGenerator;
+import tools.RandomNumberGenerator;
 
 public class Lines {
 
-  private List<Line> value;
+  private List<Line> values;
 
   public Lines(int depth, int numberOfPlayers, NumberGenerator ladderSetting) {
-    List<Line> candidateLines = makeLines(depth, numberOfPlayers, ladderSetting);
-    validateLines(candidateLines);
-    this.value = candidateLines;
+    List<Line> lines = makeLines(depth, numberOfPlayers, ladderSetting);
+    this.values = lines;
   }
 
   private List<Line> makeLines(int depth, int numberOfPlayers, NumberGenerator ladderSetting) {
+    List<Line> candidateLines = makeCandidateLines(depth, numberOfPlayers, ladderSetting);
+    if (checkLinesForRow(candidateLines)) {
+      return candidateLines;
+    }
+    NumberGenerator randomSetting = new RandomNumberGenerator();
+    return makeLines(depth, numberOfPlayers, randomSetting);
+  }
+
+  private List<Line> makeCandidateLines(int depth, int numberOfPlayers,
+      NumberGenerator ladderSetting) {
     List<Line> lines = new ArrayList<>();
     for (int i = 0; i < depth; i++) {
       lines.add(new Line(numberOfPlayers, ladderSetting));
@@ -22,29 +33,30 @@ public class Lines {
     return lines;
   }
 
-  private void validateLines(List<Line> candidateLines) {
-    int numberOfLine = candidateLines.get(0).getLength();
-    for (int i = 0; i < numberOfLine; i++) {
+  private boolean checkLinesForRow(List<Line> candidateLines) {
+    int numberOfPoints = candidateLines.get(0).getLength();
+    for (int i = 0; i < numberOfPoints; i++) {
       if (isRowEmpty(candidateLines, i)) {
-        throw new IllegalArgumentException("[ERROR] 사다리가 끊어져 있습니다.");
-      }
-    }
-  }
-
-  private boolean isRowEmpty(List<Line> candidateLines, int lineIndex) {
-    for (int i = 0; i < candidateLines.size(); i++) {
-      if (hasHorizon(candidateLines, lineIndex, i)) {
         return false;
       }
     }
     return true;
   }
 
-  private boolean hasHorizon(List<Line> candidateLines, int lineIndex, int linesIndex) {
-    return (candidateLines.get(linesIndex).getPoint(lineIndex));
+  private boolean isRowEmpty(List<Line> candidateLines, int lineIndex) {
+    for (int i = 0; i < candidateLines.size(); i++) {
+      if (candidateLines.get(i).getPoint(lineIndex)) {
+        return false;
+      }
+    }
+    return true;
   }
 
-  public List<Line> getValue() {
-    return value;
+  public boolean hasHorizon(int linesDepth, int lineIndex) {
+    return this.values.get(linesDepth).getPoint(lineIndex);
+  }
+
+  public List<Line> getValues() {
+    return values.stream().map(Line::new).collect(Collectors.toUnmodifiableList());
   }
 }

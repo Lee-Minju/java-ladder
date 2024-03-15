@@ -1,6 +1,11 @@
 package domain;
 
+import static tools.PointStatus.ENABLE;
+import static tools.PointStatus.LEFT;
+import static tools.PointStatus.RIGHT;
+
 import tools.NumberGenerator;
+import tools.PointStatus;
 
 public class Ladder {
 
@@ -8,26 +13,44 @@ public class Ladder {
   private LadderDepth depth;
   private NumberGenerator numberGenerator;
 
-  public Ladder(LadderDepth depth, int numberOfPlayers, NumberGenerator ladderSetting) {
-    this.depth = depth;
-    this.numberGenerator = ladderSetting;
-    makeLadder(depth.getValue(), numberOfPlayers);
+  public Ladder(int depth, int numberOfPlayers, NumberGenerator numberGenerator) {
+    this.depth = new LadderDepth(depth, numberOfPlayers);
+    this.numberGenerator = numberGenerator;
+    this.lines = new Lines(depth, numberOfPlayers, this.numberGenerator);
   }
 
-  private void makeLadder(int depth, int numberOfPlayers) {
-    try {
-      Lines candidateLines = new Lines(depth, numberOfPlayers, this.numberGenerator);
-      this.lines = candidateLines;
-    } catch (IllegalArgumentException e) {
-      makeLadder(depth, numberOfPlayers);
+  public PointStatus isPossibleMoveNow(Player player, int currentDepth, int numberOfPlayers) {
+    if (player.getPosition().isMostLeftPosition() || player.getPosition()
+        .isMostRightPosition(numberOfPlayers)) {
+      return checkForSpecialCase(player, currentDepth);
     }
+    if (this.lines.hasHorizon(currentDepth, player.getPositionValue() - 1)) {
+      return LEFT;
+    }
+    if (this.lines.hasHorizon(currentDepth, player.getPositionValue())) {
+      return RIGHT;
+    }
+    return ENABLE;
+  }
+
+  private PointStatus checkForSpecialCase(Player player, int currentDepth) {
+    if (player.getPosition().isMostLeftPosition()) {
+      if (this.lines.hasHorizon(currentDepth, player.getPositionValue())) {
+        return RIGHT;
+      }
+      return ENABLE;
+    }
+    if (this.lines.hasHorizon(currentDepth, player.getPositionValue() - 1)) {
+      return LEFT;
+    }
+    return ENABLE;
   }
 
   public Line getLine(int index) {
-    return this.lines.getValue().get(index);
+    return this.lines.getValues().get(index);
   }
 
-  public int getDepthValue() {
+  public int getDepth() {
     return this.depth.getValue();
   }
 }
